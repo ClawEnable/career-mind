@@ -1,0 +1,15 @@
+{
+  "name": "career-plugin",
+  "description": "Local marketplace for Career Plugin",
+  "owner": {
+    "name": "Mani"
+  },
+  "plugins": [
+    {
+      "name": "career",
+      "description": "Universal job-seeking engineering framework. Extract experiences, review resumes, tailor improvements, prepare for interviews.",
+      "version": "0.1.0",
+      "source": "./"
+    }
+  ]
+}
