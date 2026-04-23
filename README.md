@@ -1,6 +1,18 @@
 # career-mind
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](.claude-plugin/plugin.json)
+
 Career capability management for AI coding agents. Capture capabilities from any source, assess information quality, generate career artifacts for any scenario — resumes, performance reviews, promotion cases, and more.
+
+**No fabricated achievements. Every output traces back to your real experience.**
+
+## Quick Start
+
+```bash
+npx skills add ClawEnable/career-mind
+```
+
+Then run `/career-mind:setup` in your agent to get started.
 
 ## Installation
 
@@ -39,10 +51,6 @@ Add this repo as a marketplace, then install the plugin:
 /plugin marketplace add ClawEnable/career-mind
 /plugin install career-mind@career-mind
 ```
-
-### Getting started
-
-After installation, run `/career-mind:setup` to establish your career context.
 
 ## Skills
 
@@ -96,19 +104,10 @@ This plugin enforces strict source tracing:
 - Sources are limited to: entry library, profile data, or user's direct words
 - No invented metrics, no inflated skills, no fabricated achievements
 
-## Output Format
+## Contributing
 
-All output is Markdown. For DOCX/PDF conversion, use any of these tools:
-
-```bash
-# Using pandoc
-pandoc resume.md -o resume.docx
-pandoc resume.md -o resume.pdf
-
-# Using Typora (GUI)
-# File → Export → DOCX/PDF
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding skills, assessment dimensions, and output scenarios.
 
 ## License
 
-[MIT](LICENSE) © 2026 Mani
+[MIT](LICENSE) © 2026 ClawEnable
