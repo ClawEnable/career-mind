@@ -1,7 +1,6 @@
 {
   "name": "career-mind",
   "description": "Career capability management plugin. Capture, assess, and present professional capabilities for any career scenario.",
-  "version": "0.2.0",
   "author": {
     "name": "ClawEnable"
   },
