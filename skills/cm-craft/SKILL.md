@@ -1,5 +1,5 @@
 ---
-name: craft
+name: cm-craft
 description: Generate career artifacts for any scenario. Combines entry library with assessment feedback to produce resumes, performance reviews, promotion cases, skill maps, and more. Every output traces to verified sources. Use when user says 'generate resume', 'write performance review', 'create promotion case', 'build skill map', or has completed assess and wants to produce an artifact.
 ---
 
@@ -8,11 +8,11 @@ description: Generate career artifacts for any scenario. Combines entry library 
 ## Context Loading
 
 1. Read `.career/context.md` for state.
-2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:cm-init` first. Stop.
 3. If `last_assessment` is set → read the assessment report from `.career/outputs/`.
 4. Read all entries in `.career/entries/`.
 5. Read `.career/profile.md`.
-6. If no entries found → tell user: "No information available. Run `/career-mind:capture` first to capture your experiences." Stop.
+6. If no entries found → tell user: "No information available. Run `/career-mind:cm-capture` first to capture your experiences." Stop.
 7. Determine target scenario:
 
 | Trigger | Scenario |
@@ -21,7 +21,7 @@ description: Generate career artifacts for any scenario. Combines entry library 
 | User says "performance review", "self-evaluation" | performance |
 | User says "promotion", "promotion case" | promotion |
 | User says "skill map", "skill gap" | skillmap |
-| User says "interview prep" | → redirect to `/career-mind:interview` |
+| User says "interview prep" | → redirect to `/career-mind:cm-interview` |
 | No specific scenario | Ask user to choose |
 
 ## Hard Constraints
@@ -100,9 +100,9 @@ After output is saved:
 
 | Condition | Next Step |
 |-----------|-----------|
-| Generated a resume | Ask: "Shall I prepare for interviews with this resume?" → `/career-mind:interview` |
-| Generated other artifact | Ask: "Want to assess your overall career readiness?" → `/career-mind:status` |
-| User wants to iterate | Ask: "Shall I assess the output quality?" → `/career-mind:assess` |
+| Generated a resume | Ask: "Shall I prepare for interviews with this resume?" → `/career-mind:cm-interview` |
+| Generated other artifact | Ask: "Want to assess your overall career readiness?" → `/career-mind:cm-status` |
+| User wants to iterate | Ask: "Shall I assess the output quality?" → `/career-mind:cm-assess` |
 
 If user confirms, invoke the next skill immediately.
 

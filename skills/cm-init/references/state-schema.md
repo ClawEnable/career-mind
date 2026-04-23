@@ -10,6 +10,7 @@ profile: "<complete | partial | missing>"
 career_stage: "<active-seeking | preparing | graduate | career-change | performance | development | other>"
 target_direction: "<description or none>"
 last_assessment: "<filename or none>"
+interaction_hints: "<free-text notes or none>"
 ---
 
 ## Entries
@@ -24,11 +25,12 @@ last_assessment: "<filename or none>"
 
 | Field | Updated by | When |
 |-------|-----------|------|
-| profile | init | After profile collection |
-| career_stage | init | After stage selection |
-| target_direction | init, or any skill | When user provides direction |
-| last_assessment | assess | After assessment report saved |
-| Entries section | init, capture | After entries imported or confirmed and saved |
+| profile | cm-init | After profile collection |
+| career_stage | cm-init | After stage selection |
+| target_direction | cm-init, or any skill | When user provides direction |
+| last_assessment | cm-assess | After assessment report saved |
+| interaction_hints | any skill | When user expresses a clear, repeatable preference (e.g. "keep it brief", "I prefer options not open questions"). Only persist preferences expressed consistently across 2+ interactions — do not record one-off feedback. |
+| Entries section | cm-init, cm-capture | After entries imported or confirmed and saved |
 | Recent Actions | any skill | After completing a workflow step |
 
 ## Entries Annotations
@@ -44,13 +46,13 @@ Recent Actions lines MUST use these standardized keywords:
 
 | Keyword | Written by | Meaning |
 |---------|-----------|---------|
-| `init` | init | Directory created, profile collected |
-| `import` | init | Documents found and parsed into entries |
-| `capture` | capture | Entry created or supplemented through capture |
-| `capture-postimport` | capture | Post-import analysis completed |
-| `assess` | assess | Assessment report generated |
-| `craft` | craft | Artifact generated |
-| `interview` | interview | Interview prep completed or mock interview conducted |
+| `init` | cm-init | Directory created, profile collected |
+| `import` | cm-init | Documents found and parsed into entries |
+| `capture` | cm-capture | Entry created or supplemented through capture |
+| `capture-postimport` | cm-capture | Post-import analysis completed |
+| `assess` | cm-assess | Assessment report generated |
+| `craft` | cm-craft | Artifact generated |
+| `interview` | cm-interview | Interview prep completed or mock interview conducted |
 
 ## Read/Write Protocol
 

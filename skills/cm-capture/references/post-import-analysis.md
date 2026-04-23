@@ -22,9 +22,19 @@ If `target_direction` contains multiple targets, use the most senior/targeted ro
 
 Document the chosen perspective — it shapes all subsequent phases.
 
+## Phase 0.5: Framework Alignment
+
+Before starting analysis, align with the user on what you're about to do:
+
+"I've imported {N} entries covering {brief domain summary}. Based on your target direction ({target_direction}), I'll analyze from the perspective of {Phase 0 perspective}. I'll identify both information gaps to fill and strong highlights to deepen. Sound good? Or should I adjust the focus?"
+
+Wait for user confirmation before proceeding. If user adjusts focus, update the perspective accordingly.
+
 ## Phase 1: Two-Layer Analysis
 
-Review all existing entries through the lens established in Phase 0. For each entry, perform two layers:
+Review all existing entries through the lens established in Phase 0. Adapt analysis depth per entry based on its current information density: entries with rich detail deserve deeper inference and more targeted gap identification; thin entries need broader coverage before narrowing. Do not apply uniform depth to all entries.
+
+For each entry, perform two layers:
 
 ### Layer 1 — Domain Inference (understand first)
 
@@ -69,6 +79,12 @@ Classify gaps using the standard table, weighted by Phase 0 perspective:
 
 Same gap may be Critical for one target direction and Medium for another. Always reference Phase 0.
 
+### Highlight Identification (parallel to gap prioritization)
+
+While classifying gaps, also identify entries that are strong enough to serve as career highlights. Use the criteria in `cm-assess/references/assess-rubric.md` (Highlight Identification section).
+
+For each highlight, note the deepening direction (`[deepen-metrics]`, `[deepen-decisions]`, `[deepen-scope]`, or `[deepen-narrative]`) and which artifact type it best serves.
+
 ## Phase 3: Present Analysis with Polished Options
 
 Present to the user as a structured report with three parts:
@@ -85,7 +101,15 @@ Do NOT present this as questions. This is your understanding statement.
 
 Only genuinely non-inferable gaps:
 
-Priority | Entry | What's missing (why only the user can tell)
+| Priority | Entry | What's missing (why only the user can tell) |
+|----------|-------|----------------------------------------------|
+
+### Part 2.5 — Highlight Table
+
+Entries that are already strong and have deepening potential:
+
+| Entry | Deepening Direction | Best Artifact Use |
+|-------|--------------------|--------------------|
 
 ### Part 3 — Polished Supplement Options
 
@@ -179,5 +203,7 @@ When the user confirms a statement, it's ready for structuring.
 - Generate new options only when previous ones are clearly wrong — don't generate options for every minor detail
 
 ## Phase 5: Confirm and Write
+
+Before writing, verify each entry's three-dimension coverage (what/how/result). If a core dimension is still missing after refinement, mark that supplement as `[partial]` in the entry and note what remains open — do not silently accept incomplete content.
 
 Follow the same Confirm and Write process as Active Description (Phase 5).

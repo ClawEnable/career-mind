@@ -1,5 +1,5 @@
 ---
-name: interview
+name: cm-interview
 description: Prepare for job interviews based on career entries and generated resume. Use when user says 'interview prep', 'practice interview', 'mock interview', 'prepare for interview', 'interview questions', or has completed craft (resume) and wants to prepare. Generates deep-dive questions, project talking points, weakness strategies, and reverse questions. Adapts to user's role type.
 ---
 
@@ -8,7 +8,7 @@ description: Prepare for job interviews based on career entries and generated re
 ## Context Loading
 
 1. Read `.career/context.md` for career stage and target direction.
-2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:cm-init` first. Stop.
 3. Read `.career/profile.md` for basic info (name, education) — needed for self-introduction prep.
 4. Load resume if available: find the latest `resume_*.md` file in `.career/outputs/`. If no resume exists, work from entries directly.
 5. Load entries from `.career/entries/` (including any supplement sections — merge all rounds for the most complete picture).
@@ -82,8 +82,8 @@ After prep is complete:
 
 | Condition | Next Step |
 |-----------|-----------|
-| User wants to check overall readiness | Ask: "Want to check your overall career status?" → `/career-mind:status` |
-| User wants to iterate on resume | Ask: "Shall I assess or improve your materials?" → `/career-mind:assess` or `/career-mind:craft` |
+| User wants to check overall readiness | Ask: "Want to check your overall career status?" → `/career-mind:cm-status` |
+| User wants to iterate on resume | Ask: "Shall I assess or improve your materials?" → `/career-mind:cm-assess` or `/career-mind:cm-craft` |
 
 If user confirms, invoke the next skill immediately.
 

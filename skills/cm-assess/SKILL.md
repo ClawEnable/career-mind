@@ -1,5 +1,5 @@
 ---
-name: assess
+name: cm-assess
 description: Assess career information quality and completeness. Evaluates capability coverage across multiple dimensions. Use when user says 'assess my materials', 'review what I have', 'how complete is my profile', 'am I ready', or has completed capture and wants feedback. Can target specific output scenarios.
 ---
 
@@ -8,12 +8,12 @@ description: Assess career information quality and completeness. Evaluates capab
 ## Context Loading
 
 1. Read `.career/context.md` for career stage and target direction.
-2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:cm-init` first. Stop.
 3. Load all available information:
    - Read `.career/profile.md` if exists
    - Read all files in `.career/entries/`
    - Read any existing outputs in `.career/outputs/` for context
-4. If no entries found → tell user: "No entries to assess. Run `/career-mind:capture` first to capture your experiences." Stop.
+4. If no entries found → tell user: "No entries to assess. Run `/career-mind:cm-capture` first to capture your experiences." Stop.
 5. Determine assessment target:
    - If user specifies a scenario (resume, promotion, performance review, etc.) → target that scenario
    - If no scenario specified → general quality assessment
@@ -66,15 +66,21 @@ Display the score table to user with a brief explanation of each dimension. Ask:
 
 For each applicable dimension, identify specific gaps with entry references.
 
+### Step 3.5: Identify Highlights
+
+For each entry that scored Adequate or Strong on multiple dimensions, evaluate whether it qualifies as a highlight candidate using criteria in `references/assess-rubric.md` (Highlight Identification section).
+
+For each highlight candidate, note: entry id, why it qualifies, which deepening direction applies (`[deepen-metrics]`, `[deepen-decisions]`, `[deepen-scope]`, or `[deepen-narrative]`), and which artifact type it best serves (resume bullet, interview story, promotion evidence).
+
 ### Step 4: Classify Gaps
 
 For each gap found, classify:
 - **[needs-capture]** — missing information requiring new entries. Specify what type and area.
 - **[needs-supplement]** — existing entry lacks depth in a dimension. Specify which entry and what detail is missing.
 
-### Step 4.5: Gap Preview
+### Step 4.5: Preview (Gaps and Highlights)
 
-Present classified gaps to user before writing the full report. If [needs-capture] or [needs-supplement] items exist, explain what information is missing and suggest how to address it.
+Present classified gaps and highlight candidates to user before writing the full report. If [needs-capture] or [needs-supplement] items exist, explain what information is missing and suggest how to address it. If highlight candidates were identified, present them: "I also found {N} entries that stand out as career highlights: {list with deepening directions}."
 
 ### Step 5: Generate Report
 
@@ -100,6 +106,11 @@ Write report to `.career/outputs/assessment_YYYYMMDD.md` (using current date):
 ## Detailed Findings
 {per-dimension analysis with specific examples from entries}
 
+## Highlights
+| Entry | Strengths | Deepening Direction | Best Artifact Use |
+|-------|-----------|---------------------|-------------------|
+| {entry id} | {why it qualifies} | {deepen tag} | {resume / interview / promotion} |
+
 ## Gaps
 ### [needs-capture]
 - {gap with specific guidance on what to capture}
@@ -108,6 +119,7 @@ Write report to `.career/outputs/assessment_YYYYMMDD.md` (using current date):
 - {gap with specific guidance on which entry to re-extract and what detail is missing}
 
 ## Summary
+- Highlight candidates: {N} entries
 - Total gaps: {N} ({capture} needs-capture, {supplement} needs-supplement)
 - Strongest areas: {list}
 - Weakest areas: {list}
@@ -124,8 +136,8 @@ After report is saved:
 
 | Condition | Next Step |
 |-----------|-----------|
-| Has [needs-capture] or [needs-supplement] items | Ask: "Assessment found gaps. Shall I capture more details for those areas?" → `/career-mind:capture` |
-| All gaps addressed | Ask: "What would you like to do next? Generate a resume, prepare for interview, or something else?" → user chooses |
+| Has [needs-capture], [needs-supplement], or highlight candidates | Ask: "Assessment found {gaps} and {highlights}. Shall I capture more details for the gaps and deepen the highlights?" → `/career-mind:cm-capture` |
+| All gaps addressed, no highlights | Ask: "What would you like to do next? Generate a resume, prepare for interview, or something else?" → user chooses |
 
 If user confirms, invoke the next skill immediately.
 

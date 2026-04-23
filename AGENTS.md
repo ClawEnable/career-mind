@@ -8,22 +8,22 @@ This plugin provides 6 skills, each defined in a `SKILL.md` file:
 
 | Skill | Purpose |
 |-------|---------|
-| `init` | Initialize career context — scan for documents, collect profile, import existing materials |
-| `capture` | Multi-mode information capture: post-import analysis with domain inference, active description, session review, document import |
-| `assess` | Evaluate information quality and completeness, identify gaps, optionally target a specific scenario |
-| `craft` | Generate career artifacts (resume, performance review, promotion case, skill map) with source tracing |
-| `interview` | Interview prep with deep-dive questions, talking points, weakness strategies, mock interview |
-| `status` | Check current status and recommend next step |
+| `cm-init` | Initialize career context — scan for documents, collect profile, import existing materials |
+| `cm-capture` | Multi-mode information capture: post-import analysis with domain inference, active description, session review, document import |
+| `cm-assess` | Evaluate information quality and completeness, identify gaps, optionally target a specific scenario |
+| `cm-craft` | Generate career artifacts (resume, performance review, promotion case, skill map) with source tracing |
+| `cm-interview` | Interview prep with deep-dive questions, talking points, weakness strategies, mock interview |
+| `cm-status` | Check current status and recommend next step |
 
 ## Workflow
 
 ```
-init → capture ⇄ assess → craft (any scenario) → interview (optional)
+cm-init → cm-capture ⇄ cm-assess → cm-craft (any scenario) → cm-interview (optional)
                    ↑              │
-                   └──────────────┘  (assess finds gaps → capture fills them)
+                   └──────────────┘  (cm-assess finds gaps → cm-capture fills them)
 ```
 
-Start anywhere based on what you need. If unsure, begin with `init`.
+Start anywhere based on what you need. If unsure, begin with `cm-init`.
 
 ## Data Storage
 

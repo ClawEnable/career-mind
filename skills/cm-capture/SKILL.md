@@ -1,5 +1,5 @@
 ---
-name: capture
+name: cm-capture
 description: Capture career capabilities and experiences through conversation, work review, or document import. Use when user says 'capture', 'record', 'describe my work', 'summarize what we did', 'import resume', or is sent from assess with gaps to fill.
 ---
 
@@ -8,7 +8,7 @@ description: Capture career capabilities and experiences through conversation, w
 ## Context Loading
 
 1. Read `.career/context.md` to check existing entries and avoid re-covering ground.
-2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:cm-init` first. Stop.
 3. Read existing entries in `.career/entries/` to know what's already captured.
 4. Optionally read `.career/profile.md` for user context.
 
@@ -28,7 +28,7 @@ description: Capture career capabilities and experiences through conversation, w
 Check in this order:
 
 1. **Post-import analysis** (highest priority): Triggered when `context.md` Recent Actions contains a `import` keyword AND no `capture` or `capture-postimport` or `assess` keyword appears after it. This means we just came from Init with imported data.
-2. **Targeted dive**: Triggered when Recent Actions contains an `assess` keyword AND the assessment report has `[needs-capture]` or `[needs-supplement]` items.
+2. **Targeted dive**: Triggered when Recent Actions contains an `assess` keyword AND the assessment report has `[needs-capture]`, `[needs-supplement]`, or `[deepen-*]` items.
 3. **Session review**: User says "summarize what we did", "review this session".
 4. **Document import**: User provides a file path or pasted document.
 5. **Active description**: User says "record", "describe", "talk about", or no other mode matches.
@@ -36,7 +36,7 @@ Check in this order:
 | Trigger | Mode | Opening |
 |---------|------|---------|
 | Entries exist from import, no assess/capture yet | Post-import analysis | See Mode: Post-Import Analysis below |
-| Recent Actions mentions assessment with gaps | Targeted dive | "Assessment found we need more detail on {area}. Let's dig into that." For [needs-supplement] items, focus on re-extracting missing dimensions from existing entries. |
+| Recent Actions mentions assessment with gaps or highlights | Targeted dive | "Assessment found we need more detail on {area} and identified {N} highlights to deepen. Let's dig in." For [needs-supplement] items, focus on re-extracting missing dimensions. For [deepen-*] items, focus on the tagged deepening direction. |
 | User says "summarize what we did", "review this session" | Session review | "Let me review what we worked on and identify any notable highlights." |
 | User provides file path or pasted document | Document import | "I'll parse this document and extract relevant information." |
 | User says "record", "describe", "talk about" | Active description | "What experience would you like to start with?" |
@@ -46,15 +46,15 @@ Check in this order:
 
 ### Mode: Post-Import Analysis
 
-This mode runs when entries were imported during Init but haven't been assessed or deepened yet. Read `references/post-import-analysis.md` for the full workflow (dynamic perspective, domain inference, gap prioritization, polished option generation, iterative refinement, confirm and write).
+This mode runs when entries were imported during Init but haven't been assessed or deepened yet. Read `references/post-import-analysis.md` for the full workflow (framework alignment, dynamic perspective, domain inference, gap prioritization, polished option generation, iterative refinement, confirm and write).
 
 ### Mode: Active Description
 
 #### Phase 1: Open Exploration
 
-If existing entries are present: reference them to guide the conversation. Start with the entry that has the most missing dimensions or highest strategic value. "I noticed {entry} mentions {result} but doesn't cover how you got there. Can you walk me through that?"
+Briefly align with the user: "I'll capture your experiences by listening first, then following up on valuable details. Each experience should cover what you did, how you did it, and what resulted. {If target_direction exists: I'll pay extra attention to anything relevant to {target_direction}.} What would you like to start with?"
 
-If no existing entries: start naturally. Follow the user's lead.
+If existing entries are present: reference them to guide the conversation. Start with the entry that has the most missing dimensions or highest strategic value. "I noticed {entry} mentions {result} but doesn't cover how you got there. Can you walk me through that?"
 
 If user has no starting point: "What have you been working on recently?"
 
@@ -168,7 +168,7 @@ Session review mode has LOWER freedom — stick to the "at most 2 highlights" co
 
 After capture is complete, ask: "I've captured {N} entries. Shall I assess what we have so far?"
 
-If user confirms, invoke `/career-mind:assess` immediately.
+If user confirms, invoke `/career-mind:cm-assess` immediately.
 
 ## Output
 

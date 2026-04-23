@@ -1,5 +1,5 @@
 ---
-name: status
+name: cm-status
 description: Check current career preparation status and recommend next steps. Use when user says 'career status', 'where am I', 'what next', 'what should I do', or is unsure where to start.
 ---
 
@@ -8,7 +8,7 @@ description: Check current career preparation status and recommend next steps. U
 ## Context Loading
 
 1. Read `.career/context.md` (YAML frontmatter with fields: profile, career_stage, target_direction, last_assessment; plus Entries and Recent Actions sections).
-2. If file does not exist → user has not initialized. Say: "You haven't initialized yet. Run `/career-mind:init` to get started." Stop here.
+2. If file does not exist → user has not initialized. Say: "You haven't initialized yet. Run `/career-mind:cm-init` to get started." Stop here.
 3. If file exists → read state fields and Recent Actions.
 4. Scan `.career/entries/` for entry count and types.
 5. Scan `.career/outputs/` for generated artifacts.
@@ -34,13 +34,13 @@ Check conditions in this order (first match wins):
 
 | Condition | Recommendation |
 |-----------|---------------|
-| Profile missing or partial | "Complete your profile first: `/career-mind:init`" |
-| No entries | "Start by capturing your experiences: `/career-mind:capture`" |
-| Has entries from import, no capture session yet (Recent Actions has `import` but no `capture` or `capture-postimport`) | "Deepen your imported entries: `/career-mind:capture`" |
-| Has entries, no assessment | "Let's assess your materials: `/career-mind:assess`" |
-| Has assessment with [needs-capture] or [needs-supplement] items | "Assessment found gaps. Fill them: `/career-mind:capture`, then `/career-mind:assess` again" |
-| Has assessment (no gaps), no generated artifacts | "Generate what you need: `/career-mind:craft`" |
-| Has generated artifacts | "You're on track! Iterate on any step or prepare for interviews: `/career-mind:interview`" |
+| Profile missing or partial | "Complete your profile first: `/career-mind:cm-init`" |
+| No entries | "Start by capturing your experiences: `/career-mind:cm-capture`" |
+| Has entries from import, no capture session yet (Recent Actions has `import` but no `capture` or `capture-postimport`) | "Deepen your imported entries: `/career-mind:cm-capture`" |
+| Has entries, no assessment | "Let's assess your materials: `/career-mind:cm-assess`" |
+| Has assessment with [needs-capture] or [needs-supplement] items | "Assessment found gaps. Fill them: `/career-mind:cm-capture`, then `/career-mind:cm-assess` again" |
+| Has assessment (no gaps), no generated artifacts | "Generate what you need: `/career-mind:cm-craft`" |
+| Has generated artifacts | "You're on track! Iterate on any step or prepare for interviews: `/career-mind:cm-interview`" |
 
 ## Next Step
 

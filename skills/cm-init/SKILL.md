@@ -1,5 +1,5 @@
 ---
-name: init
+name: cm-init
 description: Initialize career-mind workspace. Creates .career/ directory, collects profile info, establishes career context, imports existing materials. Use when user says 'career init', 'initialize', 'get started', 'first time', or mentions setting up their career context.
 ---
 
@@ -45,8 +45,6 @@ If files found → use extracted data to pre-fill everything in the following st
 ### Step 2: Create Directory Structure
 
 Create `.career/` with subdirectories: `entries/`, `outputs/`.
-
-If career-related files were found, copy originals to `.career/outputs/`.
 
 ### Step 3: Collect Profile (pre-filled if possible)
 
@@ -116,7 +114,7 @@ After user confirms → set `confirmed: true`. If user corrects → update and r
 **If Step 1 found nothing:**
 
 "Do you have any existing documents you'd like to import? For example: resume, performance review, LinkedIn profile, project documentation."
-- If provided → save originals to `.career/outputs/`, parse into entries following `references/entry-template.md`, present for confirmation. Set `confirmed: true` after user confirms.
+- If provided → parse into entries following `references/entry-template.md`, present for confirmation. Set `confirmed: true` after user confirms.
 - If none → skip.
 
 ### Step 7: Initialize Context
@@ -135,13 +133,12 @@ Record actions in Recent Actions using standardized keywords:
 
 Always proceed to capture: "Init complete. Shall we start capturing your capabilities and experiences?"
 
-If user confirms, invoke `/career-mind:capture` immediately.
+If user confirms, invoke `/career-mind:cm-capture` immediately.
 
 ## Output
 
 - `.career/` directory with subdirectories (entries/, outputs/)
 - `.career/profile.md`
 - `.career/context.md`
-- Original files in `.career/outputs/` (if found or provided)
 - Imported entries in `.career/entries/` following entry-template.md format (if documents found/provided)
 - Auto-proceed to capture (if user confirms)
