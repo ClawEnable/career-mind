@@ -14,42 +14,44 @@ npx skills add ClawEnable/career-mind
 
 Then run `/career-mind:init` in your agent to get started.
 
+## Compatible Agents
+
+| Agent | Install Path | Install Method |
+|-------|-------------|----------------|
+| Claude Code | `~/.claude/skills/` | `npx skills add` or plugin marketplace |
+| Codex | `~/.agents/skills/` | `npx skills add` or manual |
+| Gemini CLI | `~/.gemini/skills/` | `npx skills add` or manual |
+| Cursor | `~/.cursor/skills/` | `npx skills add` or manual |
+| Copilot CLI | `~/.copilot/skills/` | `npx skills add` or manual |
+| Cline | `~/.cline/skills/` | `npx skills add` or manual |
+| OpenCode | `.opencode/skills/` | `npx skills add` or manual |
+
 ## Installation
 
-### Option 1: skills.sh (recommended, universal)
+### Recommended: skills.sh (universal)
 
-Works with any supported agent — auto-detects your installed agents and installs to the correct path.
+Auto-detects your installed agents and installs to the correct path:
 
 ```bash
 npx skills add ClawEnable/career-mind
 ```
 
-### Option 2: Manual install
+### Alternative: Claude Code Plugin
 
-Clone the repo and copy the `skills/` directory to your agent's skill path:
-
-| Agent | Skill Path |
-|-------|-----------|
-| Claude Code | `~/.claude/skills/` |
-| Codex | `~/.agents/skills/` |
-| Gemini CLI | `~/.gemini/skills/` |
-| OpenCode | `.opencode/skills/` |
-| Cursor | `~/.cursor/skills/` |
-| Copilot CLI | `~/.copilot/skills/` |
-| Cline | `~/.cline/skills/` |
-
-```bash
-git clone https://github.com/ClawEnable/career-mind.git
-cp -r career-mind/skills/* ~/.claude/skills/   # or your agent's path
-```
-
-### Option 3: Claude Code plugins
-
-Add this repo as a marketplace, then install the plugin:
+For Claude Code users who prefer the plugin system:
 
 ```bash
 /plugin marketplace add ClawEnable/career-mind
 /plugin install career-mind@career-mind
+```
+
+### Alternative: Manual
+
+Clone and copy the `skills/` directory to your agent's install path (see table above):
+
+```bash
+git clone https://github.com/ClawEnable/career-mind.git
+cp -r career-mind/skills/* ~/.claude/skills/   # or your agent's path
 ```
 
 ## Skills
@@ -57,13 +59,20 @@ Add this repo as a marketplace, then install the plugin:
 | Command | Description |
 |---------|-------------|
 | `/career-mind:init` | Initialize career context — scan for documents, collect profile, import existing materials |
-| `/career-mind:capture` | Capture capabilities and experiences through domain-aware, option-based interaction: post-import analysis, active description, session review, or document import |
+| `/career-mind:capture` | Capture capabilities through domain-aware, option-based interaction: post-import analysis, active description, session review, or document import |
 | `/career-mind:assess` | Assess information quality and completeness, identify gaps |
 | `/career-mind:craft` | Generate career artifacts: resume, performance review, promotion case, skill map |
 | `/career-mind:interview` | Prepare for interviews with deep-dive questions and mock practice |
 | `/career-mind:status` | Check current status and get a recommendation for next step |
 
-## Workflow
+## How It Works
+
+The plugin uses a domain-first interaction model designed for experienced professionals:
+
+- **Domain inference** — understands your technical content before asking questions, so it never asks you to explain standard practices
+- **Option-based capture** — generates polished statement options with estimated values for you to confirm or correct, rather than requiring you to compose from scratch
+- **Dynamic perspective** — analysis adapts to your target role; gaps that are critical for an architect may be minor for a senior engineer
+- **Iterative refinement** — each selection reveals new clues, converging on accurate statements through structured rounds
 
 ```
 init → capture ⇄ assess → craft (any scenario) → interview (optional)
@@ -71,18 +80,18 @@ init → capture ⇄ assess → craft (any scenario) → interview (optional)
                    └──────────────┘  (assess finds gaps → capture fills them)
 ```
 
-Entry is flexible — start at any skill depending on what you need:
+Start anywhere depending on what you need:
 
 - Nothing yet → `/career-mind:init`
 - Want to describe your experiences → `/career-mind:capture`
 - Want to assess what you have → `/career-mind:assess`
 - Need a specific artifact → `/career-mind:craft`
 - Ready to prep for interviews → `/career-mind:interview`
-- Not sure → `/career-mind:status` for a status check
+- Not sure → `/career-mind:status`
 
 ## Data Storage
 
-User data is stored in a `.career/` directory within your current working directory:
+All data is stored in `.career/` within your current working directory:
 
 ```
 .career/
