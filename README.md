@@ -1,6 +1,6 @@
 # career-mind
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](.claude-plugin/plugin.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-0.4.0-green.svg)](.claude-plugin/marketplace.json)
 
 Career capability management for AI coding agents. Capture capabilities from any source, assess information quality, generate career artifacts for any scenario — resumes, performance reviews, promotion cases, and more.
 
@@ -57,7 +57,7 @@ Add this repo as a marketplace, then install the plugin:
 | Command | Description |
 |---------|-------------|
 | `/career-mind:init` | Initialize career context — scan for documents, collect profile, import existing materials |
-| `/career-mind:capture` | Capture capabilities and experiences: active description, session review, or document import |
+| `/career-mind:capture` | Capture capabilities and experiences through domain-aware, option-based interaction: post-import analysis, active description, session review, or document import |
 | `/career-mind:assess` | Assess information quality and completeness, identify gaps |
 | `/career-mind:craft` | Generate career artifacts: resume, performance review, promotion case, skill map |
 | `/career-mind:interview` | Prepare for interviews with deep-dive questions and mock practice |

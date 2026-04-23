@@ -9,7 +9,7 @@ This plugin provides 6 skills, each defined in a `SKILL.md` file:
 | Skill | Purpose |
 |-------|---------|
 | `init` | Initialize career context — scan for documents, collect profile, import existing materials |
-| `capture` | Multi-mode information capture: active description, session review, document import |
+| `capture` | Multi-mode information capture: post-import analysis with domain inference, active description, session review, document import |
 | `assess` | Evaluate information quality and completeness, identify gaps, optionally target a specific scenario |
 | `craft` | Generate career artifacts (resume, performance review, promotion case, skill map) with source tracing |
 | `interview` | Interview prep with deep-dive questions, talking points, weakness strategies, mock interview |
@@ -43,6 +43,8 @@ User data is stored in `.career/` within the current working directory:
 - **User verbatim:** The user's own words are the most valuable output; preserve them
 - **Progressive disclosure:** Skills load detailed references on demand, keeping context efficient
 - **Multi-source capture:** Information comes from conversation, work session review, or document import
+- **Domain-first inference:** Skills use domain expertise to understand content before asking questions, minimizing user input
+- **Infer-then-option interaction:** Generate polished statement options with estimated values rather than asking open-ended questions
 - **Multi-scenario output:** Generate any career artifact, not just resumes
 
 ## For Skill Consumers
