@@ -20,6 +20,8 @@ description: Capture career capabilities and experiences through conversation, w
 - **Session review limit:** Extract at most 2 capability highlights per session review. Quality over quantity
 - Ask one question at a time for open-ended exploration. When options are known, present as numbered choices
 - Never mention SOAR/STAR to the user — these are internal organizing tools only
+- **Domain-first inference:** Before asking any question about an entry, use your domain expertise to understand what the content already implies. Only surface gaps that are genuinely non-inferable — business context, specific metrics, personal experiences, operational realities. Never ask a domain expert to explain what standard practice already explains.
+- **Infer-then-option interaction:** When existing information provides a basis (imported entries, profile data, conversation history), use domain knowledge to generate polished, complete statement options with specific estimated values. Each option should be a ready-to-use draft that the user confirms or corrects — not a topic label requiring further articulation. For uncertain values, provide reasonable estimates with concrete ranges (e.g., "30-50% improvement" not "X% improvement"). Iterate: option → user selection → refined option → confirmation.
 
 ## Mode Detection
 
@@ -44,7 +46,7 @@ Check in this order:
 
 ### Mode: Post-Import Analysis
 
-This mode runs when entries were imported during Init but haven't been assessed or deepened yet. Read `references/post-import-analysis.md` for the full workflow (expert analysis, gap prioritization, targeted questioning, confirm and write).
+This mode runs when entries were imported during Init but haven't been assessed or deepened yet. Read `references/post-import-analysis.md` for the full workflow (dynamic perspective, domain inference, gap prioritization, polished option generation, iterative refinement, confirm and write).
 
 ### Mode: Active Description
 

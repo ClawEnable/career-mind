@@ -27,8 +27,8 @@ Before asking the user anything, scan the current working directory for career-r
 
 1. List all files in the working directory and immediate subdirectories (exclude `.career/`, `.git/`, `.obsidian/`, `node_modules/`)
 2. Identify career-relevant files by name pattern and extension:
-   - Resumes/CVs: files containing "简历", "CV", "resume", "curriculum" in filename, or `.pdf`/`.md`/`.docx` files with career-related content
-   - Performance reviews: files containing "绩效", "review", "performance"
+   - Resumes/CVs: files containing resume-related keywords in filename (e.g., "resume", "CV", "curriculum", and localized equivalents), or `.pdf`/`.md`/`.docx` files with career-related content
+   - Performance reviews: files containing review-related keywords (e.g., "review", "performance", "appraisal", and localized equivalents)
    - LinkedIn exports: files containing "linkedin", "LinkedIn"
    - Project documentation: any remaining `.md` or `.docx` files
 3. Read identified files and extract:
@@ -59,22 +59,47 @@ Write to `.career/profile.md` using template at `references/profile-template.md`
 
 ### Step 4: Career Stage
 
-Present as a numbered choice: "What are you focusing on right now?"
-- a) Preparing for future opportunities → `preparing`
-- b) Actively job searching → `active-seeking`
-- c) Recent or upcoming graduate → `graduate`
-- d) Career change / transition → `career-change`
-- e) Performance review or promotion → `performance`
-- f) General career development → `development`
-- g) Other → `other`
+If Step 1 extracted career-relevant documents, infer career stage from document signals before presenting options:
+
+- Multiple resume versions targeting different roles or industries → `active-seeking`
+- Performance review documents present → `performance`
+- Recent graduation date (within 2 years) → `graduate`
+- Resume shows career change indicators (new industry or role vs education/background) → `career-change`
+- Single stable-position resume, no job-search indicators → `preparing` or `development`
+
+Present the inferred stage with a confirmation option:
+"From your documents, it looks like you're {inferred stage with brief reasoning}. Is that right?
+If not: a) Preparing for future opportunities b) Actively job searching c) Recent/upcoming graduate d) Career change/transition e) Performance review/promotion f) General career development g) Other"
+
+If no documents were found or inference is ambiguous:
+Present the full choice list (a-g) as fallback.
 
 Note: career stage is broader than job-seeking. It captures the user's current career context and goals.
 
 ### Step 5: Target Direction (optional)
 
-"What direction are you heading? For example: target role, industry, level, or career goal."
-- Has direction → record for context.md
-- No → skip, mark as "none"
+If Step 1 extracted career-relevant documents:
+
+Infer target direction from document content:
+- Resume title / role label (e.g., "Senior iOS Engineer", "Mobile Architect")
+- Technology emphasis patterns (e.g., heavy architecture content → architecture roles)
+- Multiple resume versions → extract each distinct target as a separate option
+- Industry focus, level indicators
+
+Generate polished direction options for selection:
+"From your documents, your target direction appears to be one of:
+a) {inferred direction 1 — complete description with role, level, and focus area}
+b) {inferred direction 2 — complete description with role, level, and focus area}
+c) {inferred direction 3 — complete description, derived from document patterns}
+d) Something else (please describe)"
+
+If a single clear direction emerges, confirm directly:
+"Your target is {direction with complete description}. Correct?"
+
+Record confirmed direction in context.md.
+
+If Step 1 found nothing or direction is genuinely unclear:
+Ask open-ended. Mark as "none" if no answer.
 
 ### Step 6: Import Existing Materials
 
