@@ -1,13 +1,13 @@
 ---
 name: Bug report
-about: Report a problem with a Career Plugin skill
+about: Report a problem with a career-mind skill
 title: "[Bug] "
 labels: bug
 ---
 
 ## Which skill?
 
-<!-- e.g., career-init, career-extract, career-review, career-tailor, career-interview, career-status -->
+<!-- e.g., setup, capture, assess, craft, interview, status -->
 
 ## What happened
 

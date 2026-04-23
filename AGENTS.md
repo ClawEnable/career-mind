@@ -1,6 +1,6 @@
-# Career Plugin
+# career-mind
 
-Universal job-seeking engineering framework. Turns job-seeking into a repeatable engineering process.
+Career capability management plugin. Captures, assesses, and presents professional capabilities for any career scenario.
 
 ## Skills
 
@@ -8,41 +8,42 @@ This plugin provides 6 skills, each defined in a `SKILL.md` file:
 
 | Skill | Purpose |
 |-------|---------|
-| `career-init` | First-time setup — creates `~/.career/` directory, collects profile info, detects existing materials |
-| `career-extract` | Open conversation to explore and structure career experiences into material entries |
-| `career-review` | Multi-perspective resume review with scored dimensions and issue classification |
-| `career-tailor` | Improve or generate resume content with strict source tracing (no fabrication) |
-| `career-interview` | Interview prep with deep-dive questions, talking points, weakness strategies, mock interview |
-| `career-status` | Check current preparation status and recommend next step |
+| `setup` | Establish career context — create `.career/` directory, collect profile, import existing documents |
+| `capture` | Multi-mode information capture: active description, session review, document import |
+| `assess` | Evaluate information quality and completeness, identify gaps, optionally target a specific scenario |
+| `craft` | Generate career artifacts (resume, performance review, promotion case, skill map) with source tracing |
+| `interview` | Interview prep with deep-dive questions, talking points, weakness strategies, mock interview |
+| `status` | Check current status and recommend next step |
 
 ## Workflow
 
 ```
-init → extract → review → tailor → interview
-         ↑          │
-         └──────────┘  (review finds gaps → extract fills them)
+setup → capture ⇄ assess → craft (any scenario) → interview (optional)
+                   ↑              │
+                   └──────────────┘  (assess finds gaps → capture fills them)
 ```
 
-Start anywhere based on what you have. If unsure, begin with `career-init`.
+Start anywhere based on what you need. If unsure, begin with `setup`.
 
 ## Data Storage
 
-All user data is stored locally at `~/.career/`:
+User data is stored in `.career/` within the current working directory:
 
 ```
-~/.career/
-├── profile.md       # Name, contact, education
+.career/
+├── profile.md       # Name, contact, education (enrichable over time)
 ├── context.md       # Cross-skill state (YAML frontmatter)
-├── materials/       # Extracted experience entries
-├── reviews/         # Review reports
-└── resumes/         # Resume versions (original + drafts)
+├── entries/         # Capability library (project, signal, achievement entries)
+└── outputs/         # Generated artifacts (resumes, assessments, etc.)
 ```
 
 ## Key Principles
 
-- **Anti-fabrication:** Every resume bullet traces to a verified source — no invented metrics or inflated skills
+- **Anti-fabrication:** Every artifact bullet traces to a verified source — no invented metrics or inflated skills
 - **User verbatim:** The user's own words are the most valuable output; preserve them
 - **Progressive disclosure:** Skills load detailed references on demand, keeping context efficient
+- **Multi-source capture:** Information comes from conversation, work session review, or document import
+- **Multi-scenario output:** Generate any career artifact, not just resumes
 
 ## For Skill Consumers
 

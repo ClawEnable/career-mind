@@ -1,6 +1,6 @@
 # Writing Quality Principles
 
-These principles guide resume content improvement. They apply to both "improve existing" and "generate from materials" modes.
+These principles guide artifact content generation. They apply to all scenario types.
 
 ## Core Principles
 
@@ -16,18 +16,18 @@ These principles guide resume content improvement. They apply to both "improve e
 
 These are hard constraints. Violating any one is a critical failure.
 
-1. **Source traceability:** Every output bullet must begin with `[based on: <source>]` where source is one of:
-   - `materials-<id>` — from a confirmed material entry
-   - `resume-rephrase` — rephrased from original resume text
+1. **Source traceability:** Every output bullet must map to a source, recorded in the .meta.md sidecar file. Valid sources:
+   - `entry-{id}` — from a confirmed entry
+   - `profile` — from profile.md
    - `user-verbatim` — from user's direct words in conversation
 
 2. **No invented facts:** Do not add technologies, skills, metrics, or achievements not present in the source material
 
-3. **No inflated numbers:** "significantly improved" in source cannot become "improved 50%" in output. Quantification requires source data
+3. **No inflated numbers:** "significantly improved" in source cannot become "improved 50%" in output
 
 4. **No skill inflation:** "familiar with React" cannot become "expert in React"
 
-## Rephrasing Boundaries (generic quality improvement mode, no review report)
+## Rephrasing Boundaries
 
 Allowed:
 - Replace weak verbs with stronger ones (if the action is factually accurate)
@@ -36,7 +36,7 @@ Allowed:
 - Merge or split bullet points
 
 Not allowed:
-- Add metrics not in the original text
+- Add metrics not in the original entry
 - Add technologies or tools not mentioned
 - Change the scope of contribution ("participated in" → "led" is fabrication)
-- Add entirely new bullet points
+- Add entirely new bullet points without source

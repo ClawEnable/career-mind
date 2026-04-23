@@ -23,4 +23,4 @@ These apply regardless of user type:
 
 ## Tone Principle
 
-Interview prep uses **user_verbatim** from materials (not polished resume text). Speaking naturally in an interview is more authentic than reciting optimized phrases. If no materials exist, use resume content but encourage the user to rephrase in their own words.
+Interview prep uses **user_verbatim** from entries (not polished resume text). Speaking naturally in an interview is more authentic than reciting optimized phrases. If no entries exist, use resume content but encourage the user to rephrase in their own words.

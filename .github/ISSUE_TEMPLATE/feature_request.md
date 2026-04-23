@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for Career Plugin
+about: Suggest an idea for career-mind
 title: "[Feature] "
 labels: enhancement
 ---
@@ -15,7 +15,7 @@ labels: enhancement
 
 ## Which skill(s) does this affect?
 
-<!-- e.g., career-extract, career-tailor, or "new skill" -->
+<!-- e.g., capture, craft, or "new skill" -->
 
 ## Additional context
 

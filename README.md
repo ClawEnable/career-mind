@@ -1,6 +1,6 @@
-# Career Plugin
+# career-mind
 
-Universal job-seeking engineering framework for AI coding agents. Extract experiences, review resumes, tailor improvements, prepare for interviews — all powered by structured prompts with zero external dependencies.
+Career capability management for AI coding agents. Capture capabilities from any source, assess information quality, generate career artifacts for any scenario — resumes, performance reviews, promotion cases, and more.
 
 ## Installation
 
@@ -9,7 +9,7 @@ Universal job-seeking engineering framework for AI coding agents. Extract experi
 Works with any supported agent — auto-detects your installed agents and installs to the correct path.
 
 ```bash
-npx skills add <github-owner>/career-plugin
+npx skills add ClawEnable/career-mind
 ```
 
 ### Option 2: Manual install
@@ -27,70 +27,73 @@ Clone the repo and copy the `skills/` directory to your agent's skill path:
 | Cline | `~/.cline/skills/` |
 
 ```bash
-git clone https://github.com/<owner>/career-plugin.git
-cp -r career-plugin/skills/* ~/.claude/skills/   # or your agent's path
+git clone https://github.com/ClawEnable/career-mind.git
+cp -r career-mind/skills/* ~/.claude/skills/   # or your agent's path
 ```
 
-### Option 3: Claude Code plugin marketplace
+### Option 3: Claude Code plugins
+
+Add this repo as a marketplace, then install the plugin:
 
 ```bash
-claude plugins marketplace add /path/to/career-plugin
+/plugin marketplace add ClawEnable/career-mind
+/plugin install career-mind@career-mind
 ```
 
 ### Getting started
 
-After installation, run `/career:career-init` to set up your environment.
+After installation, run `/career-mind:setup` to establish your career context.
 
 ## Skills
 
 | Command | Description |
 |---------|-------------|
-| `/career:career-status` | Check current status and get a recommendation for next step |
-| `/career:career-init` | First-time setup — create environment, collect profile info |
-| `/career:career-extract` | Explore and structure career experiences through open conversation |
-| `/career:career-review` | Multi-perspective resume review with scored dimensions |
-| `/career:career-tailor` | Improve or generate resume content with source tracing |
-| `/career:career-interview` | Prepare for interviews with deep-dive questions and mock practice |
+| `/career-mind:setup` | First-time setup — establish career context, collect profile, import existing documents |
+| `/career-mind:capture` | Capture capabilities and experiences: active description, session review, or document import |
+| `/career-mind:assess` | Assess information quality and completeness, identify gaps |
+| `/career-mind:craft` | Generate career artifacts: resume, performance review, promotion case, skill map |
+| `/career-mind:interview` | Prepare for interviews with deep-dive questions and mock practice |
+| `/career-mind:status` | Check current status and get a recommendation for next step |
 
 ## Workflow
 
 ```
-init → extract → review → tailor → interview
-         ↑          │
-         └──────────┘  (review finds gaps → extract fills them)
+setup → capture ⇄ assess → craft (any scenario) → interview (optional)
+                   ↑              │
+                   └──────────────┘  (assess finds gaps → capture fills them)
 ```
 
-Entry is flexible — start at any skill depending on what you have:
+Entry is flexible — start at any skill depending on what you need:
 
-- Nothing yet → `/career:career-init`
-- Have a resume → `/career:career-review`
-- Want to explore experiences → `/career:career-extract`
-- Ready to prep for interviews → `/career:career-interview`
-- Not sure → `/career:career-status` for a status check
+- Nothing yet → `/career-mind:setup`
+- Want to describe your experiences → `/career-mind:capture`
+- Want to assess what you have → `/career-mind:assess`
+- Need a specific artifact → `/career-mind:craft`
+- Ready to prep for interviews → `/career-mind:interview`
+- Not sure → `/career-mind:status` for a status check
 
 ## Data Storage
 
-All user data is stored locally at `~/.career/`:
+User data is stored in a `.career/` directory within your current working directory:
 
 ```
-~/.career/
-├── profile.md       # Name, contact, education
+.career/
+├── profile.md       # Name, contact, education (enrichable over time)
 ├── context.md       # Cross-skill state (YAML frontmatter)
-├── materials/       # Extracted experience entries
-├── reviews/         # Review reports
-└── resumes/         # Resume versions (original + drafts)
+├── entries/         # Capability library (project, signal, achievement entries)
+└── outputs/         # Generated artifacts (resumes, assessments, etc.)
 ```
 
 ## Privacy
 
-**All personal data lives in `~/.career/` which is excluded from git via `.gitignore`.** Your resume, profile, and extracted materials never leave your local machine unless you explicitly share them.
+**All personal data lives in `.career/` within your project directory.** Your profile, entries, and generated artifacts never leave your local machine unless you explicitly share them. Add `.career/` to your `.gitignore` if you don't want it tracked.
 
 ## Anti-Fabrication
 
 This plugin enforces strict source tracing:
 
-- Every resume bullet generated by `/career:career-tailor` is tagged with `[based on: <source>]`
-- Sources are limited to: material library entries, original resume text, or user's direct words
+- Every artifact bullet generated by `/career-mind:craft` is traced to a verified source (recorded in a separate `.meta.md` file)
+- Sources are limited to: entry library, profile data, or user's direct words
 - No invented metrics, no inflated skills, no fabricated achievements
 
 ## Output Format
@@ -108,4 +111,4 @@ pandoc resume.md -o resume.pdf
 
 ## License
 
-MIT
+[MIT](LICENSE) © 2026 Mani

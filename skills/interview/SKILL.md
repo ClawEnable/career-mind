@@ -1,26 +1,26 @@
 ---
-name: career-interview
-description: Prepare for job interviews based on resume and materials. Generates deep-dive questions, project talking points, weakness strategies, and reverse questions. Adapts to user's role type.
+name: interview
+description: Prepare for job interviews based on career entries and generated resume. Use when user says 'interview prep', 'practice interview', 'mock interview', 'prepare for interview', 'interview questions', or has completed craft (resume) and wants to prepare. Generates deep-dive questions, project talking points, weakness strategies, and reverse questions. Adapts to user's role type.
 ---
 
 # Career Interview Prep
 
 ## Context Loading
 
-1. Read `~/.career/context.md` for career stage and target direction.
-2. If context.md missing → tell user to run `/career:career-init` first. Stop.
-3. Read `~/.career/profile.md` for basic info (name, education) — needed for self-introduction prep.
-4. Load resume: read `last_resume` from context, or ask user for file path.
-5. Load materials from `~/.career/materials/` if available (including any `## Re-extraction` sections — merge all rounds for the most complete picture).
-6. Detect user type from target direction or resume content. Use `references/interview-types.md` for adaptation.
+1. Read `.career/context.md` for career stage and target direction.
+2. If context.md missing → tell user to run `/career-mind:setup` first. Stop.
+3. Read `.career/profile.md` for basic info (name, education) — needed for self-introduction prep.
+4. Load resume if available: find the latest `resume_*.md` file in `.career/outputs/`. If no resume exists, work from entries directly.
+5. Load entries from `.career/entries/` (including any supplement sections — merge all rounds for the most complete picture).
+6. Detect user type from target direction or entry content. Use `references/interview-types.md` for adaptation.
 
 ## Workflow
 
 ### Step 1: Extract Key Experiences
 
-From resume (and materials if available), identify:
+From resume and/or entries, identify:
 - 2-3 core projects with strongest impact
-- Technologies and skills mentioned
+- Technologies and skills mentioned (from entry tags)
 - Any quantified achievements
 - Employment timeline including gaps
 
@@ -46,7 +46,7 @@ For each core project, prepare:
 **Short version (1 min):** Situation → Key action → Result
 **Detailed version (3 min):** Situation → Challenge → Decision process → Action → Result → Lesson
 
-Prefer **user_verbatim** from materials over polished resume text. Speaking naturally beats reciting optimized phrases.
+Prefer **user verbatim** from entries over polished resume text. Speaking naturally beats reciting optimized phrases.
 
 Let user review and adjust in their own words.
 
@@ -73,12 +73,22 @@ Generate 3-5 questions for the user to ask the interviewer:
 
 If user wants practice: "Would you like to do a mock interview? I can play the interviewer."
 
-- Ask one question at a time
-- After user responds, give specific feedback: "That was clear" / "This part could be more specific, for example..."
+- Ask one question at a time, give specific feedback after each response
 - Focus on clarity and specificity of expression
+
+## Next Step
+
+After prep is complete:
+
+| Condition | Next Step |
+|-----------|-----------|
+| User wants to check overall readiness | Ask: "Want to check your overall career status?" → `/career-mind:status` |
+| User wants to iterate on resume | Ask: "Shall I assess or improve your materials?" → `/career-mind:assess` or `/career-mind:craft` |
+
+If user confirms, invoke the next skill immediately.
 
 ## Output
 
-Present as a structured prep document. Optionally save to `~/.career/interview_prep_[date].md` if user requests.
-
-Update `~/.career/context.md` Recent Actions.
+- Interview prep document (presented in conversation, optionally saved to `.career/outputs/interview_prep_YYYYMMDD.md`)
+- Updated `.career/context.md` (Recent Actions)
+- Auto-proceed to next recommended skill (if user confirms)

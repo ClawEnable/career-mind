@@ -1,0 +1,50 @@
+---
+name: status
+description: Check current career preparation status and recommend next steps. Use when user says 'career status', 'where am I', 'what next', 'what should I do', or is unsure where to start.
+---
+
+# Career Status Check
+
+## Context Loading
+
+1. Read `.career/context.md` (YAML frontmatter with fields: profile, career_stage, target_direction, last_assessment; plus Entries and Recent Actions sections).
+2. If file does not exist → user has not run setup. Say: "You haven't set up yet. Run `/career-mind:setup` to get started." Stop here.
+3. If file exists → read state fields and Recent Actions.
+4. Scan `.career/entries/` for entry count and types.
+5. Scan `.career/outputs/` for generated artifacts.
+6. If `last_assessment` is set → read the assessment report. Scan for `[needs-capture]` and `[needs-supplement]` to determine if there are gaps.
+
+## Status Assessment
+
+Based on context.md state and file scan, assess and report:
+
+```
+## Current Status
+- Profile: {complete/partial/missing}
+- Career Stage: {value from context}
+- Target Direction: {value or "not set"}
+- Entries: {count} ({project} projects, {signal} signals, {achievement} achievements)
+- Last Assessment: {date or "none"}
+- Generated Artifacts: {list types or "none"}
+```
+
+## Recommendation Logic
+
+| Condition | Recommendation |
+|-----------|---------------|
+| Profile missing or partial | "Complete your profile first: `/career-mind:setup`" |
+| No entries | "Start by capturing your experiences: `/career-mind:capture`" |
+| Has entries, no assessment | "Let's assess your materials: `/career-mind:assess`" |
+| Has assessment with [needs-capture] or [needs-supplement] items | "Assessment found gaps. Fill them: `/career-mind:capture`, then `/career-mind:assess` again" |
+| Has assessment (no gaps), no generated artifacts | "Generate what you need: `/career-mind:craft`" |
+| Has generated artifacts | "You're on track! Iterate on any step or prepare for interviews: `/career-mind:interview`" |
+
+## Next Step
+
+Based on the top recommendation, ask: "Shall I proceed with {recommended skill}?" If user confirms, invoke the recommended skill immediately.
+
+## Output
+
+- Status summary (as shown above)
+- One clear recommendation with auto-proceed prompt
+- No file writes — this skill is read-only

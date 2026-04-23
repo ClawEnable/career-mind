@@ -1,14 +1,16 @@
 {
-  "name": "career-plugin",
-  "description": "Local marketplace for Career Plugin",
+  "name": "career-mind",
   "owner": {
-    "name": "Mani"
+    "name": "ClawEnable"
+  },
+  "metadata": {
+    "description": "Career capability management plugin. Capture, assess, and present professional capabilities for any career scenario."
   },
   "plugins": [
     {
-      "name": "career",
-      "description": "Universal job-seeking engineering framework. Extract experiences, review resumes, tailor improvements, prepare for interviews.",
-      "version": "0.1.0",
+      "name": "career-mind",
+      "description": "Career capability management plugin. Capture, assess, and present professional capabilities for any career scenario.",
+      "version": "0.2.0",
       "source": "./"
     }
   ]
