@@ -8,7 +8,7 @@ description: Check current career preparation status and recommend next steps. U
 ## Context Loading
 
 1. Read `.career/context.md` (YAML frontmatter with fields: profile, career_stage, target_direction, last_assessment; plus Entries and Recent Actions sections).
-2. If file does not exist → user has not run setup. Say: "You haven't set up yet. Run `/career-mind:setup` to get started." Stop here.
+2. If file does not exist → user has not initialized. Say: "You haven't initialized yet. Run `/career-mind:init` to get started." Stop here.
 3. If file exists → read state fields and Recent Actions.
 4. Scan `.career/entries/` for entry count and types.
 5. Scan `.career/outputs/` for generated artifacts.
@@ -30,10 +30,13 @@ Based on context.md state and file scan, assess and report:
 
 ## Recommendation Logic
 
+Check conditions in this order (first match wins):
+
 | Condition | Recommendation |
 |-----------|---------------|
-| Profile missing or partial | "Complete your profile first: `/career-mind:setup`" |
+| Profile missing or partial | "Complete your profile first: `/career-mind:init`" |
 | No entries | "Start by capturing your experiences: `/career-mind:capture`" |
+| Has entries from import, no capture session yet (Recent Actions has `import` but no `capture` or `capture-postimport`) | "Deepen your imported entries: `/career-mind:capture`" |
 | Has entries, no assessment | "Let's assess your materials: `/career-mind:assess`" |
 | Has assessment with [needs-capture] or [needs-supplement] items | "Assessment found gaps. Fill them: `/career-mind:capture`, then `/career-mind:assess` again" |
 | Has assessment (no gaps), no generated artifacts | "Generate what you need: `/career-mind:craft`" |

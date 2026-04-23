@@ -12,7 +12,7 @@ Career capability management for AI coding agents. Capture capabilities from any
 npx skills add ClawEnable/career-mind
 ```
 
-Then run `/career-mind:setup` in your agent to get started.
+Then run `/career-mind:init` in your agent to get started.
 
 ## Installation
 
@@ -56,7 +56,7 @@ Add this repo as a marketplace, then install the plugin:
 
 | Command | Description |
 |---------|-------------|
-| `/career-mind:setup` | First-time setup — establish career context, collect profile, import existing documents |
+| `/career-mind:init` | Initialize career context — scan for documents, collect profile, import existing materials |
 | `/career-mind:capture` | Capture capabilities and experiences: active description, session review, or document import |
 | `/career-mind:assess` | Assess information quality and completeness, identify gaps |
 | `/career-mind:craft` | Generate career artifacts: resume, performance review, promotion case, skill map |
@@ -66,14 +66,14 @@ Add this repo as a marketplace, then install the plugin:
 ## Workflow
 
 ```
-setup → capture ⇄ assess → craft (any scenario) → interview (optional)
+init → capture ⇄ assess → craft (any scenario) → interview (optional)
                    ↑              │
                    └──────────────┘  (assess finds gaps → capture fills them)
 ```
 
 Entry is flexible — start at any skill depending on what you need:
 
-- Nothing yet → `/career-mind:setup`
+- Nothing yet → `/career-mind:init`
 - Want to describe your experiences → `/career-mind:capture`
 - Want to assess what you have → `/career-mind:assess`
 - Need a specific artifact → `/career-mind:craft`

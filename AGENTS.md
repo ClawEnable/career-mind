@@ -8,7 +8,7 @@ This plugin provides 6 skills, each defined in a `SKILL.md` file:
 
 | Skill | Purpose |
 |-------|---------|
-| `setup` | Establish career context — create `.career/` directory, collect profile, import existing documents |
+| `init` | Initialize career context — scan for documents, collect profile, import existing materials |
 | `capture` | Multi-mode information capture: active description, session review, document import |
 | `assess` | Evaluate information quality and completeness, identify gaps, optionally target a specific scenario |
 | `craft` | Generate career artifacts (resume, performance review, promotion case, skill map) with source tracing |
@@ -18,12 +18,12 @@ This plugin provides 6 skills, each defined in a `SKILL.md` file:
 ## Workflow
 
 ```
-setup → capture ⇄ assess → craft (any scenario) → interview (optional)
+init → capture ⇄ assess → craft (any scenario) → interview (optional)
                    ↑              │
                    └──────────────┘  (assess finds gaps → capture fills them)
 ```
 
-Start anywhere based on what you need. If unsure, begin with `setup`.
+Start anywhere based on what you need. If unsure, begin with `init`.
 
 ## Data Storage
 

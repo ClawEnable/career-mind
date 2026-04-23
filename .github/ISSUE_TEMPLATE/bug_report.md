@@ -7,7 +7,7 @@ labels: bug
 
 ## Which skill?
 
-<!-- e.g., setup, capture, assess, craft, interview, status -->
+<!-- e.g., init, capture, assess, craft, interview, status -->
 
 ## What happened
 

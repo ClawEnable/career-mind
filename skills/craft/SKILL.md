@@ -8,7 +8,7 @@ description: Generate career artifacts for any scenario. Combines entry library 
 ## Context Loading
 
 1. Read `.career/context.md` for state.
-2. If context.md missing → tell user to run `/career-mind:setup` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
 3. If `last_assessment` is set → read the assessment report from `.career/outputs/`.
 4. Read all entries in `.career/entries/`.
 5. Read `.career/profile.md`.
@@ -92,7 +92,7 @@ Write two files:
 
 Present the clean artifact to user in conversation. Mention the meta file is available for reviewing sourcing.
 
-Update `.career/context.md`: add action to Recent Actions.
+Update `.career/context.md`: add action to Recent Actions using the `craft` keyword.
 
 ## Next Step
 

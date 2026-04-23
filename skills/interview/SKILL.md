@@ -8,7 +8,7 @@ description: Prepare for job interviews based on career entries and generated re
 ## Context Loading
 
 1. Read `.career/context.md` for career stage and target direction.
-2. If context.md missing → tell user to run `/career-mind:setup` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
 3. Read `.career/profile.md` for basic info (name, education) — needed for self-introduction prep.
 4. Load resume if available: find the latest `resume_*.md` file in `.career/outputs/`. If no resume exists, work from entries directly.
 5. Load entries from `.career/entries/` (including any supplement sections — merge all rounds for the most complete picture).
@@ -90,5 +90,5 @@ If user confirms, invoke the next skill immediately.
 ## Output
 
 - Interview prep document (presented in conversation, optionally saved to `.career/outputs/interview_prep_YYYYMMDD.md`)
-- Updated `.career/context.md` (Recent Actions)
+- Updated `.career/context.md` (Recent Actions) using the `interview` keyword
 - Auto-proceed to next recommended skill (if user confirms)

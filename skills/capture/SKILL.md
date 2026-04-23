@@ -8,7 +8,7 @@ description: Capture career capabilities and experiences through conversation, w
 ## Context Loading
 
 1. Read `.career/context.md` to check existing entries and avoid re-covering ground.
-2. If context.md missing → tell user to run `/career-mind:setup` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
 3. Read existing entries in `.career/entries/` to know what's already captured.
 4. Optionally read `.career/profile.md` for user context.
 
@@ -23,20 +23,36 @@ description: Capture career capabilities and experiences through conversation, w
 
 ## Mode Detection
 
+Check in this order:
+
+1. **Post-import analysis** (highest priority): Triggered when `context.md` Recent Actions contains a `import` keyword AND no `capture` or `capture-postimport` or `assess` keyword appears after it. This means we just came from Init with imported data.
+2. **Targeted dive**: Triggered when Recent Actions contains an `assess` keyword AND the assessment report has `[needs-capture]` or `[needs-supplement]` items.
+3. **Session review**: User says "summarize what we did", "review this session".
+4. **Document import**: User provides a file path or pasted document.
+5. **Active description**: User says "record", "describe", "talk about", or no other mode matches.
+
 | Trigger | Mode | Opening |
 |---------|------|---------|
-| User says "record", "describe", "talk about" | Active description | "What experience would you like to start with?" |
+| Entries exist from import, no assess/capture yet | Post-import analysis | See Mode: Post-Import Analysis below |
+| Recent Actions mentions assessment with gaps | Targeted dive | "Assessment found we need more detail on {area}. Let's dig into that." For [needs-supplement] items, focus on re-extracting missing dimensions from existing entries. |
 | User says "summarize what we did", "review this session" | Session review | "Let me review what we worked on and identify any notable highlights." |
 | User provides file path or pasted document | Document import | "I'll parse this document and extract relevant information." |
-| Sent from assess (Recent Actions mentions assessment with gaps) | Targeted dive | "Assessment found we need more detail on {area}. Let's dig into that." For [needs-supplement] items, focus on re-extracting missing dimensions from existing entries. |
+| User says "record", "describe", "talk about" | Active description | "What experience would you like to start with?" |
+| No other mode matches | Active description | "What have you been working on recently?" |
 
 ## Workflow
+
+### Mode: Post-Import Analysis
+
+This mode runs when entries were imported during Init but haven't been assessed or deepened yet. Read `references/post-import-analysis.md` for the full workflow (expert analysis, gap prioritization, targeted questioning, confirm and write).
 
 ### Mode: Active Description
 
 #### Phase 1: Open Exploration
 
-Start naturally. Follow the user's lead. Do NOT direct the conversation.
+If existing entries are present: reference them to guide the conversation. Start with the entry that has the most missing dimensions or highest strategic value. "I noticed {entry} mentions {result} but doesn't cover how you got there. Can you walk me through that?"
+
+If no existing entries: start naturally. Follow the user's lead.
 
 If user has no starting point: "What have you been working on recently?"
 
@@ -135,8 +151,10 @@ Any skill can suggest triggering capture when relevant information surfaces in c
 ## After Writing
 
 Update `.career/context.md`:
-- Add entry to Entries section
-- Add action to Recent Actions
+- Add entry to Entries section (use `(captured: YYYY-MM-DD)` annotation)
+- Add action to Recent Actions using standardized keywords:
+  - Post-import analysis completed → `YYYY-MM-DD: capture-postimport — {summary}`
+  - Entry created or supplemented → `YYYY-MM-DD: capture — {entry id}: {brief description}`
 
 ## Freedom Note
 

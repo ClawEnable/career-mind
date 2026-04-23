@@ -8,7 +8,7 @@ description: Assess career information quality and completeness. Evaluates capab
 ## Context Loading
 
 1. Read `.career/context.md` for career stage and target direction.
-2. If context.md missing → tell user to run `/career-mind:setup` first. Stop.
+2. If context.md missing → tell user to run `/career-mind:init` first. Stop.
 3. Load all available information:
    - Read `.career/profile.md` if exists
    - Read all files in `.career/entries/`
@@ -116,7 +116,7 @@ Write report to `.career/outputs/assessment_YYYYMMDD.md` (using current date):
 
 ### Step 6: Update Context
 
-Edit `.career/context.md`: set `last_assessment` to the report filename. Add action to Recent Actions.
+Edit `.career/context.md`: set `last_assessment` to the report filename. Add action to Recent Actions using the `assess` keyword.
 
 ## Next Step
 
