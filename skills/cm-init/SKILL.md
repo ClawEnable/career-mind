@@ -18,6 +18,8 @@ description: Initialize career-mind workspace. Creates .career/ directory, colle
 - When collecting structured info (profile, career stage), present options as a numbered choice list. Reserve free-text for open-ended topics
 - All file writes create new files or edit existing files — never overwrite entire files when appending
 - Environment scan MUST happen before any user interaction. Maximize extraction from existing files, minimize manual input
+- **Collection processing:** When a step requires processing multiple items (files, entries, draft items), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
+- **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
 ## Workflow
 

@@ -60,26 +60,6 @@ Each dimension is scored on a 3-level scale: **Weak** / **Adequate** / **Strong*
 | Adequate | Some entries align with goals; others are disconnected |
 | Strong | Most entries clearly connect to goals; demonstrates consistent goal-oriented progress |
 
-## Highlight Identification
-
-An entry is a **highlight candidate** when it meets ALL of these:
-
-1. Three-dimension completeness — covers what, how, AND result with specific detail
-2. At least one concrete metric with context (baseline, scale, or comparison)
-3. Personal contribution is explicit (not hidden behind "we")
-4. Relevant to `target_direction` (waived if no target set)
-
-Tag each highlight with a deepening direction:
-
-| Tag | Meaning |
-|-----|---------|
-| `[deepen-metrics]` | Has numbers but could be more specific (add baseline, range, comparison) |
-| `[deepen-decisions]` | Has approach but missing why this approach was chosen |
-| `[deepen-scope]` | Has result but impact scope is unclear (users, teams, revenue) |
-| `[deepen-narrative]` | Has facts but lacks challenge/turning point for interview storytelling |
-
-Highlight identification is independent of scoring. An Adequate entry can be a highlight if it tells a compelling story. A Strong entry may not be a highlight if it covers routine work with no standout value.
-
 ## Gap Classification
 
 After scoring, classify each gap as:

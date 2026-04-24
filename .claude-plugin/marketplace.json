@@ -10,7 +10,7 @@
     {
       "name": "career-mind",
       "description": "Career capability management plugin. Capture, assess, and present professional capabilities for any career scenario.",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "source": "./"
     }
   ]

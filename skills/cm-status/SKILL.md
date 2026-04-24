@@ -14,6 +14,10 @@ description: Check current career preparation status and recommend next steps. U
 5. Scan `.career/outputs/` for generated artifacts.
 6. If `last_assessment` is set → read the assessment report. Scan for `[needs-capture]` and `[needs-supplement]` to determine if there are gaps.
 
+## Hard Constraints
+
+- **Execution self-check:** Before giving the recommendation, verify all conditions in the Recommendation Logic table have been checked.
+
 ## Status Assessment
 
 Based on context.md state and file scan, assess and report:

@@ -22,13 +22,15 @@ description: Capture career capabilities and experiences through conversation, w
 - Never mention SOAR/STAR to the user — these are internal organizing tools only
 - **Domain-first inference:** Before asking any question about an entry, use your domain expertise to understand what the content already implies. Only surface gaps that are genuinely non-inferable — business context, specific metrics, personal experiences, operational realities. Never ask a domain expert to explain what standard practice already explains.
 - **Infer-then-option interaction:** When existing information provides a basis (imported entries, profile data, conversation history), use domain knowledge to generate polished, complete statement options with specific estimated values. Each option should be a ready-to-use draft that the user confirms or corrects — not a topic label requiring further articulation. For uncertain values, provide reasonable estimates with concrete ranges (e.g., "30-50% improvement" not "X% improvement"). Iterate: option → user selection → refined option → confirmation.
+- **Collection processing:** When a step requires processing multiple items (entries, dimensions, gaps), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
+- **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
 ## Mode Detection
 
 Check in this order:
 
 1. **Post-import analysis** (highest priority): Triggered when `context.md` Recent Actions contains a `import` keyword AND no `capture` or `capture-postimport` or `assess` keyword appears after it. This means we just came from Init with imported data.
-2. **Targeted dive**: Triggered when Recent Actions contains an `assess` keyword AND the assessment report has `[needs-capture]`, `[needs-supplement]`, or `[deepen-*]` items.
+2. **Targeted dive**: Triggered when Recent Actions contains an `assess` keyword AND the assessment report has `[needs-capture]` or `[needs-supplement]` items.
 3. **Session review**: User says "summarize what we did", "review this session".
 4. **Document import**: User provides a file path or pasted document.
 5. **Active description**: User says "record", "describe", "talk about", or no other mode matches.
@@ -36,7 +38,7 @@ Check in this order:
 | Trigger | Mode | Opening |
 |---------|------|---------|
 | Entries exist from import, no assess/capture yet | Post-import analysis | See Mode: Post-Import Analysis below |
-| Recent Actions mentions assessment with gaps or highlights | Targeted dive | "Assessment found we need more detail on {area} and identified {N} highlights to deepen. Let's dig in." For [needs-supplement] items, focus on re-extracting missing dimensions. For [deepen-*] items, focus on the tagged deepening direction. |
+| Recent Actions mentions assessment with gaps | Targeted dive | "Assessment found we need more detail on {area}. Let's dig in." For [needs-supplement] items, focus on re-extracting missing dimensions. |
 | User says "summarize what we did", "review this session" | Session review | "Let me review what we worked on and identify any notable highlights." |
 | User provides file path or pasted document | Document import | "I'll parse this document and extract relevant information." |
 | User says "record", "describe", "talk about" | Active description | "What experience would you like to start with?" |
@@ -157,6 +159,9 @@ Update `.career/context.md`:
 - Add action to Recent Actions using standardized keywords:
   - Post-import analysis completed → `YYYY-MM-DD: capture-postimport — {summary}`
   - Entry created or supplemented → `YYYY-MM-DD: capture — {entry id}: {brief description}`
+
+After updating context, present a capture summary in conversation:
+"Saved {entry name}. Covers {which of what/how/result dimensions are present}. {If any dimension is thin: Note: {dimension} is still thin — can be deepened later.}"
 
 ## Freedom Note
 

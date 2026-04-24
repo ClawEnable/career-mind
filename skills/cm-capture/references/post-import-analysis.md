@@ -8,15 +8,19 @@ Read `context.md` and extract `target_direction`. This field drives the analysis
 
 ### Perspective Mapping
 
-Use `target_direction` to determine emphasis:
+Extract key characteristics from `target_direction` to dynamically compose an analysis perspective. Do NOT use a fixed role enumeration. Instead, determine emphasis along these independent axes:
 
-| If target_direction suggests... | Analysis emphasis | What becomes Critical |
+| Axis | What it controls | How to detect from target_direction |
 |---|---|---|
-| Architecture / Tech Lead | Architecture decisions, system design trade-offs, tech selection reasoning | Missing "how/why" behind design decisions |
-| Senior Engineer (IC) | Execution quality, delivery impact, problem-solving depth | Missing metrics and concrete results |
-| Cross-platform / Fullstack | Breadth of capability, cross-domain learning velocity, delivery scope | Missing cross-domain scope and learning evidence |
-| Management / Team Lead | Team building, process improvement, stakeholder management | Missing team dynamics and leadership evidence |
-| none / unclear | Balanced analysis, no special weighting | Standard priority table (below) |
+| **Depth vs. Breadth** | Whether analysis prioritizes deep technical reasoning or cross-domain capability breadth | Depth signals: "architect", "lead", "senior", "specialist". Breadth signals: "fullstack", "cross-platform", "generalist", "TPM" |
+| **Individual vs. Team impact** | Whether analysis prioritizes personal execution quality or leadership/influence evidence | Individual signals: "IC", "engineer", "developer". Team signals: "manager", "lead", "director", "head" |
+| **Technical vs. Business outcomes** | Whether analysis prioritizes system-level results or business-level metrics | Technical signals: role titles emphasizing tech skills. Business signals: "product", "growth", "strategy", "revenue" |
+
+Combine the axes to form a weighted priority table for gap classification. For example:
+- A "Senior Backend Engineer" would weight depth > breadth, individual > team, technical > business
+- A "Technical Program Manager" would weight breadth > depth, team > individual, business > technical
+
+If `target_direction` is unclear, apply balanced weighting across all axes.
 
 If `target_direction` contains multiple targets, use the most senior/targeted role as the primary lens, but note implications for other targets.
 
@@ -26,7 +30,7 @@ Document the chosen perspective — it shapes all subsequent phases.
 
 Before starting analysis, align with the user on what you're about to do:
 
-"I've imported {N} entries covering {brief domain summary}. Based on your target direction ({target_direction}), I'll analyze from the perspective of {Phase 0 perspective}. I'll identify both information gaps to fill and strong highlights to deepen. Sound good? Or should I adjust the focus?"
+"I've imported {N} entries covering {brief domain summary}. Based on your target direction ({target_direction}), I'll analyze with emphasis on {derived perspective from axes}. I'll identify information gaps and generate options to fill them. Sound good? Or should I adjust the focus?"
 
 Wait for user confirmation before proceeding. If user adjusts focus, update the perspective accordingly.
 
@@ -49,7 +53,7 @@ Using your domain expertise and the Phase 0 perspective, infer what you can alre
 
 Document your inferences per entry. These are NOT gaps — they represent understanding that prevents asking basic questions.
 
-Example: For a Flutter three-layer architecture entry, domain inference would include: the Plugin layer exists because iOS IAP (StoreKit + receipt verification) and Android payment channels have fundamentally different flows; the NativeBridge handles platform-specific capabilities Flutter cannot access directly; Bloc + component templates is the standard state management pattern for this architecture. None of these need to be asked — they are understood.
+Example: For an entry describing a data pipeline migration, domain inference would include: the choice of streaming vs batch architecture depends on latency requirements and data freshness SLAs; schema evolution handling is standard practice in any migration; the migration strategy (big-bang vs incremental) was likely driven by downtime tolerance and rollback complexity. None of these need to be asked — they are understood by any practitioner in the field.
 
 ### Layer 2 — Gap Identification (only non-inferable gaps)
 
@@ -79,21 +83,13 @@ Classify gaps using the standard table, weighted by Phase 0 perspective:
 
 Same gap may be Critical for one target direction and Medium for another. Always reference Phase 0.
 
-### Highlight Identification (parallel to gap prioritization)
-
-While classifying gaps, also identify entries that are strong enough to serve as career highlights. Use the criteria in `cm-assess/references/assess-rubric.md` (Highlight Identification section).
-
-For each highlight, note the deepening direction (`[deepen-metrics]`, `[deepen-decisions]`, `[deepen-scope]`, or `[deepen-narrative]`) and which artifact type it best serves.
-
 ## Phase 3: Present Analysis with Polished Options
 
-Present to the user as a structured report with three parts:
+Present to the user as a structured report with four parts:
 
 ### Part 1 — Domain Understanding (brief)
 
-Show your Layer 1 inferences in condensed form so the user knows you understand the technical content. One sentence per entry, demonstrating domain comprehension.
-
-Example: "Flutter cross-platform migration: standard three-layer architecture (UI/Plugin/NativeBridge) for cross-platform separation; PayloadCMS content delivery pipeline enables self-service marketing config without app releases; standout value is using AI tools to deliver full-stack work in an unfamiliar tech stack."
+Show your Layer 1 inferences in condensed form so the user knows you understand the content. One sentence per entry, demonstrating domain comprehension.
 
 Do NOT present this as questions. This is your understanding statement.
 
@@ -103,13 +99,6 @@ Only genuinely non-inferable gaps:
 
 | Priority | Entry | What's missing (why only the user can tell) |
 |----------|-------|----------------------------------------------|
-
-### Part 2.5 — Highlight Table
-
-Entries that are already strong and have deepening potential:
-
-| Entry | Deepening Direction | Best Artifact Use |
-|-------|--------------------|--------------------|
 
 ### Part 3 — Polished Supplement Options
 
@@ -123,35 +112,55 @@ b) {Complete polished statement with specific estimated values}
 c) {Complete polished statement with specific estimated values}
 Which ones are close to the reality? You can pick multiple."
 
-Examples of polished options (for a Flutter cross-platform project, architect target):
+Examples of polished options (illustrating the format — adapt to the user's actual domain):
 
-GOOD:
+GOOD (backend/systems):
 ```
-a) Evaluated React Native and native dual-platform approaches; chose Flutter for cross-platform
-   UI consistency and hot reload. Team had no Flutter experience but completed technical
-   validation in 2-3 weeks with AI-assisted development.
-b) Payment plugin layer unified iOS IAP (StoreKit sandbox verification + Apple review compliance)
-   and Android multi-payment channels, handling 5+ edge cases including callback timeout,
-   network interruption, and duplicate payments.
-c) Gray release covered ~30-50% of users; triggered 1-2 rollbacks due to payment callback
-   timeout during gray phase, resolved by optimizing callback timeout thresholds,
-   reaching 99%+ production stability.
-d) Cursor/Claude Code handled ~60-70% of coding work; PayloadCMS full-stack integration
-   completed in 3-4 weeks, saving an estimated 40-50% time vs traditional approach.
+a) Led migration from monolith to microservices; chose event-driven architecture to decouple
+   order processing from inventory management. Reduced deployment blast radius by isolating
+   3 critical services, enabling independent releases ~2x per week vs. previous monthly cycle.
+b) Designed circuit breaker pattern for third-party API integration; handled 500+ req/sec
+   peak load with graceful degradation during provider outages, maintaining 99.5% SLA
+   for end-user requests.
+```
+
+GOOD (data/ML):
+```
+a) Rebuilt feature pipeline from batch to streaming using Kafka + Flink; cut feature freshness
+   from 24-hour lag to ~5 minutes, enabling same-day model retraining and improving
+   prediction accuracy by an estimated 8-12% on time-sensitive features.
+b) Implemented A/B testing framework supporting 20+ concurrent experiments; statistical
+   significance reached in ~3-5 days vs. previous 2-week manual analysis cycle.
+```
+
+GOOD (frontend/mobile):
+```
+a) Introduced component design system with ~40 reusable components; reduced new feature
+   UI development time by an estimated 30-40% and eliminated most cross-platform
+   visual inconsistencies across web and mobile.
+b) Optimized initial page load from ~4s to ~1.2s through code splitting, lazy loading,
+   and image optimization; bounce rate decreased by ~15-20% on landing pages.
+```
+
+GOOD (management/product):
+```
+a) Restructured team from functional silos to cross-functional squads of 4-5; shipped
+   3x more features per quarter by reducing cross-team handoff delays from ~2 weeks
+   to same-day collaboration cycles.
+b) Introduced quarterly OKR planning across 4 teams; aligned ~80% of engineering work
+   to product strategy goals, up from an estimated 40-50% before formal goal-setting.
 ```
 
 BAD (topic labels — user still has to figure out what to say):
 ```
-a) Tech selection decision process
-b) Payment chain details
-c) Gray release data
-d) AI-assisted development efficiency
+a) Migration approach and reasoning
+b) Performance optimization details
 ```
 
 BAD (placeholder variables — user has to come up with numbers):
 ```
-a) Chose Flutter because XXX, team completed validation in X weeks
-b) Gray release covered X% users, triggered N rollbacks
+a) Migrated to microservices because XXX, reduced latency by X%
+b) Improved load time from Xs to Ys
 ```
 
 ### Part 4 — User Selection

@@ -24,6 +24,8 @@ description: Assess career information quality and completeness. Evaluates capab
 - Always classify gaps as [needs-capture] or [needs-supplement] with specific guidance
 - Never suggest specific new content that isn't grounded in existing entries
 - Assessment adapts to available information — never penalize for missing a specific entry type
+- **Collection processing:** When a step requires processing multiple items (dimensions, entries, gaps), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
+- **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
 ## Assessment Dimensions
 
@@ -56,7 +58,7 @@ Aggregate all entries by type (project, signal, achievement). Note completeness 
 
 ### Step 2: Score Each Dimension
 
-Use the rubric in `references/assess-rubric.md`. Score applicable dimensions as Weak / Adequate / Strong.
+Declare the full set of applicable dimensions (Core + Scenario-specific + Enhanced as auto-detected). Score each one using the rubric in `references/assess-rubric.md`. Mark progress: "Scoring dimension {n}/{total}: {dimension name}". Confirm all dimensions scored before advancing.
 
 ### Step 2.5: Preliminary Scores
 
@@ -64,13 +66,12 @@ Display the score table to user with a brief explanation of each dimension. Ask:
 
 ### Step 3: Analyze Per Dimension
 
-For each applicable dimension, identify specific gaps with entry references.
+For each applicable dimension, produce a substantive analysis — not just a label. Each dimension analysis must include:
+- At least 1 specific entry reference (which entry exhibits or lacks this quality)
+- What specifically is present or missing (not just "adequate" — what makes it adequate)
+- Concrete example from the entry content
 
-### Step 3.5: Identify Highlights
-
-For each entry that scored Adequate or Strong on multiple dimensions, evaluate whether it qualifies as a highlight candidate using criteria in `references/assess-rubric.md` (Highlight Identification section).
-
-For each highlight candidate, note: entry id, why it qualifies, which deepening direction applies (`[deepen-metrics]`, `[deepen-decisions]`, `[deepen-scope]`, or `[deepen-narrative]`), and which artifact type it best serves (resume bullet, interview story, promotion evidence).
+Declare all applicable dimensions upfront. Process each one. Confirm all completed before advancing.
 
 ### Step 4: Classify Gaps
 
@@ -78,9 +79,11 @@ For each gap found, classify:
 - **[needs-capture]** — missing information requiring new entries. Specify what type and area.
 - **[needs-supplement]** — existing entry lacks depth in a dimension. Specify which entry and what detail is missing.
 
-### Step 4.5: Preview (Gaps and Highlights)
+### Step 4.5: Preview Gaps
 
-Present classified gaps and highlight candidates to user before writing the full report. If [needs-capture] or [needs-supplement] items exist, explain what information is missing and suggest how to address it. If highlight candidates were identified, present them: "I also found {N} entries that stand out as career highlights: {list with deepening directions}."
+Present classified gaps to user before writing the full report. For each [needs-capture] or [needs-supplement] item, explain what information is missing and suggest how to address it. Format as a structured table:
+
+| Priority | Gap Type | Entry | What's Missing | Suggested Action |
 
 ### Step 5: Generate Report
 
@@ -106,11 +109,6 @@ Write report to `.career/outputs/assessment_YYYYMMDD.md` (using current date):
 ## Detailed Findings
 {per-dimension analysis with specific examples from entries}
 
-## Highlights
-| Entry | Strengths | Deepening Direction | Best Artifact Use |
-|-------|-----------|---------------------|-------------------|
-| {entry id} | {why it qualifies} | {deepen tag} | {resume / interview / promotion} |
-
 ## Gaps
 ### [needs-capture]
 - {gap with specific guidance on what to capture}
@@ -119,12 +117,21 @@ Write report to `.career/outputs/assessment_YYYYMMDD.md` (using current date):
 - {gap with specific guidance on which entry to re-extract and what detail is missing}
 
 ## Summary
-- Highlight candidates: {N} entries
 - Total gaps: {N} ({capture} needs-capture, {supplement} needs-supplement)
 - Strongest areas: {list}
 - Weakest areas: {list}
 - Recommendation: {next step}
 ```
+
+### Step 5.5: Present Report Summary
+
+After writing the report, present key findings in conversation before proceeding:
+1. Score overview table (all dimensions with their scores)
+2. One-sentence summary per dimension finding
+3. Total gap count with top-priority gaps listed
+4. Recommended next step
+
+Wait for user acknowledgment or feedback before advancing to Step 6.
 
 ### Step 6: Update Context
 
@@ -136,8 +143,8 @@ After report is saved:
 
 | Condition | Next Step |
 |-----------|-----------|
-| Has [needs-capture], [needs-supplement], or highlight candidates | Ask: "Assessment found {gaps} and {highlights}. Shall I capture more details for the gaps and deepen the highlights?" → `/career-mind:cm-capture` |
-| All gaps addressed, no highlights | Ask: "What would you like to do next? Generate a resume, prepare for interview, or something else?" → user chooses |
+| Has [needs-capture] or [needs-supplement] | Ask: "Assessment found {gaps}. Shall I capture more details to fill these gaps?" → `/career-mind:cm-capture` |
+| All gaps addressed | Ask: "What would you like to do next? Generate a resume, prepare for interview, or something else?" → user chooses |
 
 If user confirms, invoke the next skill immediately.
 

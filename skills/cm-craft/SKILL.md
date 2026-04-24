@@ -34,14 +34,21 @@ description: Generate career artifacts for any scenario. Combines entry library 
 - **No fabrication:** Do not add facts, metrics, technologies, or achievements not present in source material
 - **No inflation:** "familiar with X" cannot become "expert in X". "participated in" cannot become "led"
 - **Self-check:** After generating output, verify every bullet has a source tag. Remove fabricated or clearly incorrect content; mark plausible but unsourceable claims as `[unverified]` for user review
+- **Collection processing:** When a step requires processing multiple items (entries, bullets, sections), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
+- **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
 ## Workflow
 
 ### Step 1: Confirm Scenario
 
-"I have {N} entries and your profile. I'll generate a {scenario}. Sound good?"
+Present a structured summary for user confirmation:
+"I have {N} entries and your profile. Here's what I'll use:
+- Relevant entries: {list entry names with brief note on strength}
+- Profile: {name, key info}
+- {If assessment exists: Assessment highlights: {key findings}}
+- Target scenario: {scenario}
 
-If assessment report exists: "The latest assessment highlighted {key findings}. I'll factor that in."
+Does this scope look right? Anything to add or exclude?"
 
 ### Step 2: Strategy by Scenario
 
@@ -73,6 +80,8 @@ Apply writing principles from `references/writing-quality.md`:
 - Preserve user's natural expressions
 
 ### Step 5: Self-Check (Gate)
+
+Declare total bullet count: "Reviewing all {N} output bullets for source traceability."
 
 Review all output bullets:
 - Every bullet traceable to a source? If fabricated or clearly incorrect → remove. If plausible but unsourceable → mark `[unverified]`

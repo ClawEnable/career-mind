@@ -14,6 +14,11 @@ description: Prepare for job interviews based on career entries and generated re
 5. Load entries from `.career/entries/` (including any supplement sections — merge all rounds for the most complete picture).
 6. Detect user type from target direction or entry content. Use `references/interview-types.md` for adaptation.
 
+## Hard Constraints
+
+- **Collection processing:** When a step requires processing multiple items (projects, questions, talking points), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
+- **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
+
 ## Workflow
 
 ### Step 1: Extract Key Experiences
@@ -26,12 +31,9 @@ From resume and/or entries, identify:
 
 ### Step 2: Generate Deep-Dive Questions
 
-For each core project, predict interviewer follow-up questions:
+Declare core projects: "Generating questions for {N} core projects: {list}. For each project, produce at least 3 questions covering at least 3 different angles (e.g., technical depth, behavioral context, quantification, scope, decision reasoning — angles adapt to the project's nature)."
 
-- Technical: "Why did you choose X approach over Y?"
-- Behavioral: "How did you handle disagreement in this project?"
-- Quantification: "How did you measure the 20% improvement?"
-- Scope: "What was the team size? Your specific role?"
+For each core project, predict interviewer follow-up questions. Present questions grouped by project, with the question angle labeled for each.
 
 Mark **high-risk entries** that might invite scrutiny:
 - Vague or unsubstantiated claims (metrics without baselines)
@@ -41,18 +43,18 @@ Mark **high-risk entries** that might invite scrutiny:
 
 ### Step 3: Prepare Project Talking Points
 
-For each core project, prepare:
+For each core project (declared in Step 2), prepare both versions. Present each project's talking points in a structured format:
 
 **Short version (1 min):** Situation → Key action → Result
 **Detailed version (3 min):** Situation → Challenge → Decision process → Action → Result → Lesson
 
 Prefer **user verbatim** from entries over polished resume text. Speaking naturally beats reciting optimized phrases.
 
-Let user review and adjust in their own words.
+Present all talking points grouped by project. Let user review and adjust in their own words.
 
 ### Step 4: Weakness Strategies
 
-Based on user's actual situation (auto-detect, only prepare relevant ones):
+Based on user's actual situation (auto-detect, only prepare relevant ones). For each relevant strategy, produce a personalized response framework — not just the generic table. Include the user's specific context (which entry, which timeline, which gap) and how to frame it positively.
 
 | Situation | Strategy |
 |-----------|----------|
@@ -88,6 +90,8 @@ After prep is complete:
 If user confirms, invoke the next skill immediately.
 
 ## Output
+
+Interview prep content must be fully presented in conversation before optionally saving to file. Present each step's output (questions, talking points, weakness strategies, reverse questions) as it's generated. If saving to file, confirm: "I've saved the full prep to `.career/outputs/interview_prep_YYYYMMDD.md`. The key points are: {summary}."
 
 - Interview prep document (presented in conversation, optionally saved to `.career/outputs/interview_prep_YYYYMMDD.md`)
 - Updated `.career/context.md` (Recent Actions) using the `interview` keyword
