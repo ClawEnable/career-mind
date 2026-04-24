@@ -20,8 +20,9 @@ description: Capture career capabilities and experiences through conversation, w
 - **Session review limit:** Extract at most 2 capability highlights per session review. Quality over quantity
 - Ask one question at a time for open-ended exploration. When options are known, present as numbered choices
 - Never mention SOAR/STAR to the user — these are internal organizing tools only
+- **Career-stage adaptation:** Read `career_stage` from context.md and adapt your approach using `references/career-stage-signals.md`. Graduate→help translate academic/internship experience into professional language; career-change→focus on transferable skill mapping; senior/lead→focus on scope-of-influence narrative, not project-level detail.
 - **Domain-first inference:** Before asking any question about an entry, use your domain expertise to understand what the content already implies. Only surface gaps that are genuinely non-inferable — business context, specific metrics, personal experiences, operational realities. Never ask a domain expert to explain what standard practice already explains.
-- **Infer-then-option interaction:** When existing information provides a basis (imported entries, profile data, conversation history), use domain knowledge to generate polished, complete statement options with specific estimated values. Each option should be a ready-to-use draft that the user confirms or corrects — not a topic label requiring further articulation. For uncertain values, provide reasonable estimates with concrete ranges (e.g., "30-50% improvement" not "X% improvement"). Iterate: option → user selection → refined option → confirmation.
+- **Infer-then-option interaction:** When existing information provides a basis (imported entries, profile data, conversation history), use domain knowledge to generate polished, complete statement options with specific estimated values. Recommend the option most likely to be accurate with reasoning: "I'd recommend [X] because [reasoning]. Others are also plausible: [Y], [Z]. Which is closest?" Each option should be a ready-to-use draft that the user confirms or corrects — not a topic label requiring further articulation. For uncertain values, provide reasonable estimates with concrete ranges (e.g., "30-50% improvement" not "X% improvement"). Iterate: recommendation → user selection → refined option → confirmation.
 - **Collection processing:** When a step requires processing multiple items (entries, dimensions, gaps), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
 - **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
@@ -82,9 +83,7 @@ Dimensions emerge from conversation. Do NOT present a checklist to the user.
 
 #### Phase 4: Structuring
 
-Organize scattered information into entries using frameworks in `references/extract-frameworks.md`.
-
-Map each piece of information to the entry template in `references/entry-template.md`.
+Organize scattered information into entries using the entry template in `references/entry-template.md`.
 
 If structuring reveals gaps → go back to Phase 3.
 
@@ -94,7 +93,7 @@ For each entry:
 
 1. Determine entry type: `project` (has company/project context), `signal` (standalone capability), `achievement` (specific milestone)
 2. Check if a similar entry already exists in `.career/entries/`
-3. Present the structured entry to the user. Ask: "Does this look accurate? Anything to correct?"
+3. Present the structured entry to the user for confirmation (confirm / correct / reject).
 4. If user confirms → set `confirmed: true`
    - **Similar entry exists:** Append under `## Supplement YYYY-MM-DD` heading. Append new highlights and metrics. Do NOT modify YAML frontmatter or delete existing content
    - **No existing entry:** Create file following `references/entry-template.md` format
@@ -139,7 +138,7 @@ For each identified item, create a draft entry using `references/entry-template.
 
 #### Phase 3: Confirm and Write
 
-Present all draft entries to the user in summary form. Ask user to confirm or correct each one before saving.
+Present each draft entry as a structured confirmation interaction (confirm / correct / skip). Process entries one at a time. WAIT for user response on each entry before proceeding to the next.
 
 If education or contact info is found → offer to update `.career/profile.md` as well.
 

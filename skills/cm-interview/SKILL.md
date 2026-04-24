@@ -16,6 +16,7 @@ description: Prepare for job interviews based on career entries and generated re
 
 ## Hard Constraints
 
+- **Career-stage adaptation:** Read `career_stage` from context.md and adjust interview prep strategy: graduate→focus on problem-solving approach and learning ability; mid-career→focus on depth of technical decisions and ownership evidence; senior/lead→focus on scope of influence, strategic thinking, and cross-team impact; career-change→focus on motivation narrative and transferable skill demonstration.
 - **Collection processing:** When a step requires processing multiple items (projects, questions, talking points), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
 - **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
 
@@ -54,7 +55,7 @@ Present all talking points grouped by project. Let user review and adjust in the
 
 ### Step 4: Weakness Strategies
 
-Based on user's actual situation (auto-detect, only prepare relevant ones). For each relevant strategy, produce a personalized response framework — not just the generic table. Include the user's specific context (which entry, which timeline, which gap) and how to frame it positively.
+Based on user's actual situation (auto-detect, only prepare relevant ones). For each relevant strategy, produce a personalized response framework — not just the generic table. Include the user's specific context (which entry, which timeline, which gap) and how to frame it positively. For each strategy, recommend the approach most likely to succeed with reasoning: "I'd suggest [strategy] because [reasoning specific to your context]."
 
 | Situation | Strategy |
 |-----------|----------|
@@ -75,8 +76,16 @@ Generate 3-5 questions for the user to ask the interviewer:
 
 If user wants practice: "Would you like to do a mock interview? I can play the interviewer."
 
-- Ask one question at a time, give specific feedback after each response
-- Focus on clarity and specificity of expression
+Mock interview structure:
+- Start with a low-pressure question ("Tell me about a recent project you're proud of")
+- Progress to probing follow-ups based on their response
+- After each response, give structured feedback on:
+  1. **Clarity:** Was the answer understandable to someone unfamiliar with the project?
+  2. **Specificity:** Did it include concrete details, metrics, or examples?
+  3. **Structure:** Was there a clear situation → action → result flow?
+  4. **Depth:** Did it demonstrate judgment and decision-making, not just execution?
+- Mix question types: alternate between technical deep-dives, behavioral questions, and collaboration scenarios
+- After 3-5 questions, give an overall assessment with specific improvement areas
 
 ## Next Step
 

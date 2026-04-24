@@ -12,6 +12,9 @@
 - Phone: {phone number}
 - Email: {email address}
 - City: {city}
+- LinkedIn: {LinkedIn profile URL}
+- Location: {city, country}
+- Relocate: {yes/no/remote-only}
 
 ## Education
 - {degree} from {institution}, {year}

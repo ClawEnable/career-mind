@@ -23,9 +23,11 @@ description: Assess career information quality and completeness. Evaluates capab
 - Always produce the full report structure defined below
 - Always classify gaps as [needs-capture] or [needs-supplement] with specific guidance
 - Never suggest specific new content that isn't grounded in existing entries
+- **Career-stage adaptation:** Read `career_stage` from context.md and apply weighting from `career-stage-signals.md` Output Weighting column. Assessment emphasis should differ for graduate (growth potential) vs senior (scope of influence) vs career-change (adaptability).
 - Assessment adapts to available information — never penalize for missing a specific entry type
 - **Collection processing:** When a step requires processing multiple items (dimensions, entries, gaps), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
 - **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
+- **Insight over score:** Each dimension analysis must answer three questions: (1) What specific entries demonstrate this score and what exactly makes them strong or weak? (2) What is the consequence of this score for the user's target goal? (3) What single action would most improve this dimension? Never produce a dimension analysis that only restates the rubric criteria.
 
 ## Assessment Dimensions
 
@@ -47,6 +49,9 @@ description: Assess career information quality and completeness. Evaluates capab
 - `target_direction` is set → add **Target Alignment** assessment
 - `career_stage` = "graduate" → add **Academic/Internship Depth** assessment
 - `career_stage` = "career-change" → add **Transferable Skills** assessment
+- 3+ entries exist → add **Narrative Arc** assessment
+- `target_direction` is set → add **Differentiation** assessment
+- Always → add **Evidence Density** assessment
 
 Auto-detect from context.md. Do NOT ask user which dimensions to apply.
 
@@ -64,9 +69,11 @@ Declare the full set of applicable dimensions (Core + Scenario-specific + Enhanc
 
 Display the score table to user with a brief explanation of each dimension. Ask: "Any scores surprise you? Should I focus on specific areas?"
 
+WAIT for user response before proceeding to Step 3. If user flags a concern about a score, adjust the analysis emphasis accordingly.
+
 ### Step 3: Analyze Per Dimension
 
-For each applicable dimension, produce a substantive analysis — not just a label. Each dimension analysis must include:
+For each applicable dimension, produce a diagnostic insight following the Insight over score constraint — reference specific entries, explain consequences for the target goal, and recommend the highest-impact improvement action. Each dimension analysis must include:
 - At least 1 specific entry reference (which entry exhibits or lacks this quality)
 - What specifically is present or missing (not just "adequate" — what makes it adequate)
 - Concrete example from the entry content

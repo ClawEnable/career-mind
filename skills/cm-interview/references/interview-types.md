@@ -24,3 +24,25 @@ These apply regardless of user type:
 ## Tone Principle
 
 Interview prep uses **user_verbatim** from entries (not polished resume text). Speaking naturally in an interview is more authentic than reciting optimized phrases. If no entries exist, use resume content but encourage the user to rephrase in their own words.
+
+## Behavioral Judgment Questions
+
+Common patterns to prepare for (adapt to user's entries):
+- Disagreement: "Tell me about a time you disagreed with a technical decision. What did you do?"
+- Failure recovery: "Describe a project that didn't go as planned. What happened and what did you learn?"
+- Incomplete information: "Tell me about a decision you had to make without all the information you needed."
+- Priority conflict: "How did you handle competing priorities with tight deadlines?"
+- Ethical/quality tension: "When did you push back on a deadline or scope decision? What was the reasoning?"
+
+For each question type, prepare using the user's actual entries — not generic templates.
+
+## Collaboration & Influence Questions
+
+Common patterns:
+- Cross-team persuasion: "How did you convince another team to adopt your approach?"
+- Technical influence: "Tell me about a time your technical proposal was initially rejected. What did you do?"
+- Stakeholder management: "How did you communicate a technical risk to non-technical stakeholders?"
+- Mentoring impact: "Describe how you helped a colleague grow. What was the outcome?"
+- Building consensus: "Tell me about a time you had to align multiple teams on a decision."
+
+For each question, map to the user's actual cross-functional or collaborative experiences from entries.

@@ -97,6 +97,13 @@ Templates for each artifact scenario type. These guide content selection and org
 - Include scope metrics (team size, user impact, revenue)
 - Address promotion criteria explicitly
 
+### Track-specific Selection Rules (promotion)
+
+After selecting entries, determine the candidate's track based on their role and entries:
+- **IC track:** Prioritize: technical influence (standards, patterns adopted by others), code/design review impact, cross-team technical coordination, mentoring through code review and tech talks, depth of technical problem-solving
+- **Management track:** Prioritize: team building and hiring outcomes, organizational design decisions, cross-functional leadership evidence, talent development results, strategic resource allocation
+- **Both tracks:** Lead with impact narrative; demonstrate level-above behaviors; address promotion criteria explicitly; include scope progression over time
+
 ## Skill Map
 
 ### Structure

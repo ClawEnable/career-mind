@@ -22,10 +22,11 @@ description: Generate career artifacts for any scenario. Combines entry library 
 | User says "promotion", "promotion case" | promotion |
 | User says "skill map", "skill gap" | skillmap |
 | User says "interview prep" | → redirect to `/career-mind:cm-interview` |
-| No specific scenario | Ask user to choose |
+| No specific scenario | Present as a structured single-select: resume / performance / promotion / skillmap / other |
 
 ## Hard Constraints
 
+- **Career-stage adaptation:** Read `career_stage` from context.md and adjust output strategy: graduate→emphasize potential and learning; mid-career→balance technical depth with business impact; senior/lead→lead with strategic influence, scope-of-impact narrative; career-change→emphasize transferable skills and unique perspective.
 - **Source tracing:** Every output bullet must be traceable to a source. Valid sources:
   - `entry-{id}` — from a confirmed entry in .career/entries/
   - `profile` — from profile.md
@@ -33,6 +34,8 @@ description: Generate career artifacts for any scenario. Combines entry library 
   Source tracking goes in the .meta.md file, not in the artifact itself.
 - **No fabrication:** Do not add facts, metrics, technologies, or achievements not present in source material
 - **No inflation:** "familiar with X" cannot become "expert in X". "participated in" cannot become "led"
+- **Advisory recommendation:** When presenting scenario choices, entry selections, or content options, always include a recommended default with reasoning. "Based on your entries, I'd suggest X because Y" — not "Which do you prefer?"
+- **Audience calibration:** Before generating output, consider the primary audience: ATS systems need standard section names and exact keyword matches; HR screeners need clear role progression and qualifications; hiring managers need scale signals and impact evidence. Resume bullets should work on both levels — machine-scannable and human-compelling. Skills section should use industry-standard terms (e.g., both "Kubernetes" and "K8s" if the user uses either).
 - **Self-check:** After generating output, verify every bullet has a source tag. Remove fabricated or clearly incorrect content; mark plausible but unsourceable claims as `[unverified]` for user review
 - **Collection processing:** When a step requires processing multiple items (entries, bullets, sections), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
 - **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
@@ -41,14 +44,14 @@ description: Generate career artifacts for any scenario. Combines entry library 
 
 ### Step 1: Confirm Scenario
 
-Present a structured summary for user confirmation:
+Present a structured confirmation interaction with:
 "I have {N} entries and your profile. Here's what I'll use:
 - Relevant entries: {list entry names with brief note on strength}
 - Profile: {name, key info}
 - {If assessment exists: Assessment highlights: {key findings}}
 - Target scenario: {scenario}
 
-Does this scope look right? Anything to add or exclude?"
+Confirm / Adjust scope / Exclude specific entries."
 
 ### Step 2: Strategy by Scenario
 
@@ -88,6 +91,7 @@ Review all output bullets:
 - Any fabricated metrics? → remove
 - Any inflated skills/roles? → revert to source wording
 - Any new technologies not in source? → remove
+- **Cherry-picking check:** Does the output present evidence without qualifying context? If "led migration of 50 services" appears, verify whether the source also mentions team size, shared ownership, or collaborative context. Include qualifying context when it exists — omitting it inflates perceived scope and violates anti-fabrication principles.
 
 ### Step 6: Output
 

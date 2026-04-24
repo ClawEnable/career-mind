@@ -20,6 +20,8 @@ description: Initialize career-mind workspace. Creates .career/ directory, colle
 - Environment scan MUST happen before any user interaction. Maximize extraction from existing files, minimize manual input
 - **Collection processing:** When a step requires processing multiple items (files, entries, draft items), follow the closed loop: (1) declare the full set — "Need to process {N} items: {list}", (2) process each item with progress marking, (3) confirm completion — "All {N} items processed."
 - **Execution self-check:** Before advancing to the next step, verify: (a) collection operations (each/all/per) — all items processed? (b) compound actions (A and B) — all sub-actions executed? (c) qualitative actions (analyze/explain/suggest) — output has substantive content, not just framework-level mention?
+- **Interaction gating:** Each workflow step that requires user input must complete its full interaction cycle (present interaction -> receive user response -> process response) before the next step begins. Never combine multiple interaction-requiring steps into a single output turn.
+- **Structured interaction over text output:** When a step requires user confirmation, selection, or answer with known options, produce an interaction with explicit selectable options (user must perform a confirm/select action to respond) — never embed options in narrative text and wait for free-text reply.
 
 ## Workflow
 
@@ -55,6 +57,8 @@ If Step 1 extracted personal info: present the extracted info for confirmation:
 
 If Step 1 found nothing: present a structured form collecting: name, contact info (phone/email), city, education background. Group into a single interaction when possible.
 
+Present as a structured confirmation interaction (confirm / correct). WAIT for user response before proceeding to Step 4.
+
 Write to `.career/profile.md` using template at `references/profile-template.md`.
 
 ### Step 4: Career Stage
@@ -73,6 +77,8 @@ If not: a) Preparing for future opportunities b) Actively job searching c) Recen
 
 If no documents were found or inference is ambiguous:
 Present the full choice list (a-g) as fallback.
+
+Present as a structured single-select interaction (inferred stage as default option + full fallback list). WAIT for user response before proceeding to Step 5.
 
 Note: career stage is broader than job-seeking. It captures the user's current career context and goals.
 
@@ -101,11 +107,13 @@ Record confirmed direction in context.md.
 If Step 1 found nothing or direction is genuinely unclear:
 Ask open-ended. Mark as "none" if no answer.
 
+Present as a structured single-select interaction (inferred directions + "Something else"). WAIT for user response before proceeding to Step 6.
+
 ### Step 6: Import Existing Materials
 
 **If Step 1 found files and extracted work experience:**
 
-Parse extracted content into draft entries following `references/entry-template.md` format (with full YAML frontmatter: id, type, source, source_detail, tags, period, confirmed, captured_at). Set `source: imported`.
+Parse extracted content into draft entries following `references/entry-template.md` format and its granularity rules (with full YAML frontmatter: id, type, source, source_detail, tags, period, confirmed, captured_at). Default: one entry per company role; list projects as highlights within the role-level entry. Set `source: imported`.
 
 Before creating drafts, check `.career/entries/` for existing entries covering the same project or topic. If duplicates are found, skip those drafts and note them for the user: "Skipping {topic} — already captured in {existing entry filename}."
 

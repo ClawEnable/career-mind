@@ -69,6 +69,24 @@ When the same topic is captured again (file already exists):
 4. **Append full snapshot** at end of file under `## Supplement YYYY-MM-DD` heading
 5. **Update Details** only if significantly different — merge, do not delete
 
+## Import Granularity Rules
+
+When creating entries from imported documents or resume parsing:
+
+- **Default: one `project` entry per company role.**
+  - One person may hold multiple roles at one company → one entry per role
+  - Multiple projects under the same role are listed as separate highlights
+  - Rationale: preserves company-level context (role positioning, team scale, reporting structure)
+
+- **Exception — a single project may get its own entry only when:**
+  - It spans a significantly different time period (>50% of role duration)
+  - It involves a fundamentally different tech stack or responsibility domain from the role's other work
+  - The role-level entry would exceed 5 highlights AND at least 2 highlights span different product lines
+
+- **Naming for role-level entries:**
+  `{type}_{company-kebab}_{NN}.md` (e.g., `project_company-a_01.md`)
+  Multi-role at same company: `project_company-a_01.md`, `project_company-a_02.md`
+
 ## Key Rules
 
 - **user_verbatim** is mandatory in Evidence section. Craft and interview prefer user's own words

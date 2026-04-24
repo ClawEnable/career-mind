@@ -97,3 +97,21 @@ Which range is closest?"
 When the user selects an option or provides a correction:
 
 → Treat the selection as a new clue. Refine the statement incorporating the new information and present the updated version for confirmation. Generate at most 2 alternative refinements per round.
+
+## Self-Deprecation Signal
+
+When user describes significant work with minimizing language ("just", "nothing special", "routine", "simply", "basically just"):
+
+→ Reframe before asking for more: "What you're describing actually involves [specific capability]. This isn't routine because [reason]. Can you walk me through how you approached [specific aspect]?"
+
+## Positioning Mismatch Signal
+
+When user's described strengths don't align with their target_direction in context.md:
+
+→ Flag the mismatch: "Your experience emphasizes [X], but your target direction [Y] values [Z]. Should we adjust the direction, or find [Z] evidence in your background?"
+
+## Flat Narrative Signal
+
+When reviewing entries or listening to descriptions, and the user's roles/projects show similar scope across multiple positions with no progression:
+
+→ Probe for hidden growth: "These roles sound similar in scope. Was there anything that changed — team size, complexity, autonomy, organizational reach — that might not be obvious from the titles?"
