@@ -1,3 +1,5 @@
+**[English](README.md)** | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md) | [한국어](docs/README.ko.md)
+
 # career-mind
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-0.7.0-green.svg)](.claude-plugin/marketplace.json)
