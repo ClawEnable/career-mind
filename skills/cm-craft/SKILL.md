@@ -1,6 +1,8 @@
 ---
 name: cm-craft
-description: Generate career artifacts for any scenario. Combines entry library with assessment feedback to produce resumes, performance reviews, promotion cases, skill maps, and more. Every output traces to verified sources. Use when user says 'generate resume', 'write performance review', 'create promotion case', 'build skill map', or has completed assess and wants to produce an artifact.
+description: Generate career artifacts for any scenario. Combines entry library with assessment feedback to produce resumes, CVs, performance reviews, promotion cases, skill maps, and more. Every output traces to verified sources. Use when user says 'generate resume', 'write CV', 'write performance review', 'create promotion case', 'build skill map', or has completed assess and wants to produce an artifact.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Write Glob Grep"
 ---
 
 # Career Craft
@@ -92,6 +94,8 @@ Review all output bullets:
 - Any inflated skills/roles? → revert to source wording
 - Any new technologies not in source? → remove
 - **Cherry-picking check:** Does the output present evidence without qualifying context? If "led migration of 50 services" appears, verify whether the source also mentions team size, shared ownership, or collaborative context. Include qualifying context when it exists — omitting it inflates perceived scope and violates anti-fabrication principles.
+- **AI fingerprint check:** Apply AI Fingerprint Avoidance rules from writing-quality.md. Flag and rephrase any detected patterns.
+- **Audience review:** Apply the Audience Review Checklist from scenario-templates.md. Flag items that fail any perspective.
 
 ### Step 6: Output
 

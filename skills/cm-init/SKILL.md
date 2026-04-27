@@ -1,6 +1,8 @@
 ---
 name: cm-init
-description: Initialize career-mind workspace. Creates .career/ directory, collects profile info, establishes career context, imports existing materials. Use when user says 'career init', 'initialize', 'get started', 'first time', or mentions setting up their career context.
+description: Initialize career-mind workspace. Creates .career/ directory, collects profile info, establishes career context, imports existing materials. Use when user says 'career init', 'initialize', 'get started', 'first time', 'setup', or mentions setting up their career context.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Write Edit Glob Grep"
 ---
 
 # Career Init

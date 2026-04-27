@@ -1,6 +1,8 @@
 ---
 name: cm-capture
 description: Capture career capabilities and experiences through conversation, work review, or document import. Use when user says 'capture', 'record', 'describe my work', 'summarize what we did', 'import resume', or is sent from assess with gaps to fill.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Write Edit Glob Grep"
 ---
 
 # Career Capture

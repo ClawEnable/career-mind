@@ -1,6 +1,8 @@
 ---
 name: cm-status
-description: Check current career preparation status and recommend next steps. Use when user says 'career status', 'where am I', 'what next', 'what should I do', or is unsure where to start.
+description: Check current career preparation status and recommend next steps. Use when user says 'career status', 'where am I', 'what next', 'what should I do', 'help', 'progress', 'check status', or is unsure where to start.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Glob Grep"
 ---
 
 # Career Status Check

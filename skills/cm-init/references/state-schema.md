@@ -61,3 +61,20 @@ Recent Actions lines MUST use these standardized keywords:
 - **Create:** Only `init` creates this file. Other skills assume it exists
 - **Append to Entries:** Add new lines at the end of the Entries section
 - **Append to Recent Actions:** Add new lines at the end of the Recent Actions section. MUST use standardized keywords from the vocabulary table in this file
+
+## Cross-Skill Reference Index
+
+Reference files shared across skills. When a skill references a file by name, locate it at the path below:
+
+| File | Location | Used By |
+|------|----------|---------|
+| state-schema.md | cm-init/references/ | All skills |
+| profile-template.md | cm-init/references/ | All skills |
+| entry-template.md | cm-capture/references/ | cm-init, cm-capture, cm-assess, cm-craft, cm-interview |
+| career-stage-signals.md | cm-capture/references/ | cm-capture, cm-assess, cm-craft, cm-interview |
+| questioning-triggers.md | cm-capture/references/ | cm-capture |
+| post-import-analysis.md | cm-capture/references/ | cm-capture |
+| assess-rubric.md | cm-assess/references/ | cm-assess |
+| writing-quality.md | cm-craft/references/ | cm-craft |
+| scenario-templates.md | cm-craft/references/ | cm-craft |
+| interview-types.md | cm-interview/references/ | cm-interview |

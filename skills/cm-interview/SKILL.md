@@ -1,6 +1,8 @@
 ---
 name: cm-interview
 description: Prepare for job interviews based on career entries and generated resume. Use when user says 'interview prep', 'practice interview', 'mock interview', 'prepare for interview', 'interview questions', or has completed craft (resume) and wants to prepare. Generates deep-dive questions, project talking points, weakness strategies, and reverse questions. Adapts to user's role type.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Write Glob Grep"
 ---
 
 # Career Interview Prep

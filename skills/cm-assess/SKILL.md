@@ -1,6 +1,8 @@
 ---
 name: cm-assess
 description: Assess career information quality and completeness. Evaluates capability coverage across multiple dimensions. Use when user says 'assess my materials', 'review what I have', 'how complete is my profile', 'am I ready', or has completed capture and wants feedback. Can target specific output scenarios.
+compatibility: "Claude Code, Codex, Cursor, OpenCode, OpenClaw, and any Agent Skills compatible platform"
+allowed-tools: "Read Write Glob Grep"
 ---
 
 # Career Assess

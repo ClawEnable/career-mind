@@ -132,3 +132,28 @@ After selecting entries, determine the candidate's track based on their role and
 - Rate depth: "Exploring" (1 entry), "Proficient" (2-3 entries), "Strong" (4+ entries with depth)
 - Compare against target_direction for gap analysis
 - Include soft skills when evidenced in entries
+
+## Audience Review Checklist
+
+After generating any artifact, review from three perspectives:
+
+### ATS Scanner Check
+- [ ] Standard section headings used (Summary, Experience, Education, Skills)
+- [ ] Keywords match target role terminology (not paraphrased)
+- [ ] No tables, columns, or graphics that break text extraction
+- [ ] Dates in consistent, parseable format
+- [ ] Key skills appear in both Skills section and Experience bullets
+
+### HR Screener Check
+- [ ] Most recent role shows strongest impact
+- [ ] Career progression is visible without reading details
+- [ ] Key qualifications findable within 3-second scan
+- [ ] No unexplained gaps in timeline (or gaps are addressed)
+- [ ] Contact information complete and professional
+
+### Domain Expert Check
+- [ ] Technical claims are credible and specific
+- [ ] Scale indicators match role level (not inflated)
+- [ ] Technical decisions show judgment, not just execution
+- [ ] Results are realistic for the stated scope
+- [ ] Technologies mentioned are appropriate for the time period

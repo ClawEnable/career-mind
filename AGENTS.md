@@ -53,6 +53,15 @@ User data is stored in `.career/` within the current working directory:
 - **Interaction gating:** Each step requiring user input completes its full interaction cycle before the next begins
 - **Multi-scenario output:** Generate any career artifact, not just resumes
 
+## Optional Hooks
+
+career-mind supports agent Hooks for automation (optional, not required for functionality):
+
+- **SessionStart:** Auto-detect `.career/` workspace and load context on session startup
+- **PreToolUse:** Validate output files have corresponding `.meta.md` source tracing
+
+See `CLAUDE.md` for full Hook configuration examples. Hooks are advisory — the plugin works without them.
+
 ## For Skill Consumers
 
 Each skill directory follows the Agent Skills open standard:

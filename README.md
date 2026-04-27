@@ -1,12 +1,14 @@
-**[English](README.md)** | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md) | [한국어](docs/README.ko.md)
+**English** | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md) | [한국어](docs/README.ko.md)
 
 # career-mind
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Version](https://img.shields.io/badge/version-0.7.0-green.svg)](.claude-plugin/marketplace.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE) [![Version](https://img.shields.io/badge/version-0.8.0-green.svg?style=flat-square)](.claude-plugin/marketplace.json)
 
 Career capability management for AI coding agents. Capture capabilities from any source, assess information quality, generate career artifacts for any scenario — resumes, performance reviews, promotion cases, and more.
 
-**No fabricated achievements. Every output traces back to your real experience.**
+> **No fabricated achievements.** Every output traces back to your real experience.
+
+---
 
 ## Quick Start
 
@@ -17,6 +19,27 @@ cp -r career-mind/skills/* ~/.claude/skills/   # or your agent's skill path
 
 Then run `/career-mind:cm-init` in your agent to get started.
 
+---
+
+## Features
+
+### Output & Quality
+
+- **Multi-scenario output** — resumes, CVs, performance reviews, promotion cases, skill maps, and more
+- **Iterative quality loop** — assess finds gaps, capture fills them, automatically
+
+### Trust & Portability
+
+- **Anti-fabrication** — every output bullet traces to verified evidence via `.meta.md` source mapping
+- **Zero dependencies** — pure prompt engineering; no build tools, no API keys, works offline
+
+### Adaptive & Cross-Platform
+
+- **Career-stage aware** — adapts strategy for graduates, mid-career, senior, and career-change professionals
+- **5+ agent platforms** — Claude Code, Codex, Cursor, OpenCode, OpenClaw
+
+---
+
 ## Compatible Agents
 
 | Agent | Skill Path | Install Method |
@@ -26,6 +49,8 @@ Then run `/career-mind:cm-init` in your agent to get started.
 | Cursor | `~/.agents/skills/` or `~/.cursor/skills/` | GitHub remote import or manual copy |
 | OpenCode | `.opencode/skills/` | Manual copy |
 | OpenClaw | `<workspace>/skills/` | `openclaw skills install` |
+
+---
 
 ## Installation
 
@@ -60,6 +85,8 @@ git clone https://github.com/ClawEnable/career-mind.git
 cp -r career-mind/skills/* ~/.agents/skills/   # Codex, Cursor, OpenCode
 ```
 
+---
+
 ## Skills
 
 | Command | Description |
@@ -70,6 +97,8 @@ cp -r career-mind/skills/* ~/.agents/skills/   # Codex, Cursor, OpenCode
 | `/career-mind:cm-craft` | Generate career artifacts: resume, performance review, promotion case, skill map |
 | `/career-mind:cm-interview` | Prepare for interviews with technical, behavioral, and collaboration questions plus structured mock practice |
 | `/career-mind:cm-status` | Check current status and get a recommendation for next step |
+
+---
 
 ## How It Works
 
@@ -82,10 +111,10 @@ The plugin uses a domain-first interaction model designed for experienced profes
 - **Dynamic perspective** — analysis adapts to your target role; gaps that are critical for an architect may be minor for a senior engineer
 - **Iterative refinement** — each selection reveals new clues, converging on accurate statements through structured rounds
 
-```
-cm-init → cm-capture ⇄ cm-assess → cm-craft (any scenario) → cm-interview (optional)
-                   ↑              │
-                   └──────────────┘  (cm-assess finds gaps → cm-capture fills them)
+```mermaid
+flowchart LR
+    init["cm-init"] --> capture["cm-capture"] --> assess["cm-assess"] --> craft["cm-craft"] --> interview["cm-interview"]
+    assess -.->|"gaps found"| capture
 ```
 
 Start anywhere depending on what you need:
@@ -97,7 +126,9 @@ Start anywhere depending on what you need:
 - Ready to prep for interviews → `/career-mind:cm-interview`
 - Not sure → `/career-mind:cm-status`
 
-## Data Storage
+---
+
+## Data & Privacy
 
 All data is stored in `.career/` within your current working directory:
 
@@ -109,9 +140,9 @@ All data is stored in `.career/` within your current working directory:
 └── outputs/         # Generated artifacts (resumes, assessments, etc.)
 ```
 
-## Privacy
-
 **All personal data lives in `.career/` within your project directory.** Your profile, entries, and generated artifacts never leave your local machine unless you explicitly share them. Add `.career/` to your `.gitignore` if you don't want it tracked.
+
+---
 
 ## Anti-Fabrication
 
@@ -122,9 +153,13 @@ This plugin enforces strict source tracing:
 - No invented metrics, no inflated skills, no fabricated achievements
 - Qualifying context is preserved alongside achievements — no cherry-picking evidence to inflate perceived scope
 
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding skills, assessment dimensions, and output scenarios.
+
+---
 
 ## License
 
